@@ -1,0 +1,82 @@
+
+.font-serif {
+    font-family: 'Libre Caslon Text', serif;
+}
+
+.text-plum {
+    color: #4A2C55 !important;
+}
+
+.bg-plum {
+    background-color: #4A2C55 !important;
+}
+
+.btn-plum {
+    background-color: #4A2C55;
+    border-color: #4A2C55;
+    transition: all 0.3s ease;
+}
+
+.btn-plum:hover {
+    background-color: #33163e;
+    border-color: #33163e;
+    opacity: 0.95;
+    transform: translateY(-2px);
+}
+
+.custom-navbar {
+    background-color: rgba(249, 249, 249, 0.85);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link {
+    color: #4c444d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4A2C55;
+    opacity: 0.7;
+}
+
+.max-w-custom {
+    max-width: 800px;
+}
+
+.hover-plum:hover {
+    color: #4A2C55 !important;
+    transition: color 0.3s ease;
+}
+
+.social-link {
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #4A2C55 !important;
+}
+
+.social-link:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.footer-custom {
+    background-color: #30183c;
+}
+
+.footer-link {
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #ffffff !important;
+    transform: translateX(4px);
+}
+

@@ -1,0 +1,204 @@
+
+
+<!-- Main Content Canvas -->
+<main class="container my-5 py-4">
+  <div class="row g-5">
+
+    <!-- Sidebar Navigation for FAQ (Desktop & Responsive) -->
+    <aside class="col-md-3 d-none d-md-block">
+      <h2 class="h4 fw-bold mb-4 text-dark">Support</h2>
+      <nav class="nav flex-column border-start ps-3 gap-2">
+        <a class="nav-link text-dark fw-bold border-start border-dark border-3 ps-3 ms-n3" href="#sizing">Sizing & Fit</a>
+        <a class="nav-link text-secondary py-1" href="#shipping">Shipping</a>
+        <a class="nav-link text-secondary py-1" href="#returns">Returns</a>
+        <a class="nav-link text-secondary py-1" href="#care">Care</a>
+      </nav>
+    </aside>
+
+    <!-- FAQ Content Area -->
+    <section class="col-12 col-md-9">
+      <!-- Header section -->
+      <div class="mb-5">
+        <p class="text-uppercase small text-muted fw-bold mb-2 tracking-widest">Client Care</p>
+        <h1 class="display-5 fw-normal text-dark mb-3">Common Questions</h1>
+        <p class="text-secondary fs-5 w-100 w-md-75">Everything you need to know about our products, sizing, and policies to ensure a seamless experience for you and your little ones.</p>
+      </div>
+
+      <!-- Section 1: Sizing & Fit -->
+      <div class="mb-5" id="sizing">
+        <h3 class="h4 fw-bold text-dark border-bottom pb-3 mb-4">Sizing & Fit</h3>
+
+        <!-- Accordion Item 1 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('sizing-1')">
+            <span class="fs-6 text-dark fw-medium">How does your sizing compare to age?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'sizing-1' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'sizing-1') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              Our sizing is designed to be true to age, with a slightly relaxed fit to accommodate growth. For example, a 6-12M size is tailored to fit comfortably until the baby is closer to 12 months. If your child is between sizes, we generally recommend sizing up for longer wear.
+            </div>
+          }
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('sizing-2')">
+            <span class="fs-6 text-dark fw-medium">Where can I find detailed garment measurements?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'sizing-2' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'sizing-2') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              A comprehensive Size Guide is available on every product page, just above the size selector. This guide provides exact chest, length, and waist measurements for each garment style, as well as general height and weight recommendations.
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Section 2: Shipping & Delivery -->
+      <div class="mb-5" id="shipping">
+        <h3 class="h4 fw-bold text-dark border-bottom pb-3 mb-4">Shipping & Delivery</h3>
+
+        <!-- Accordion Item 3 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('shipping-1')">
+            <span class="fs-6 text-dark fw-medium">What are your domestic shipping options?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'shipping-1' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'shipping-1') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              We offer complimentary Standard Shipping on domestic orders over $150 (3-5 business days). For faster delivery, Expedited (2-day) and Overnight options are available at checkout. All orders are processed within 24 hours of placement.
+            </div>
+          }
+        </div>
+
+        <!-- Accordion Item 4 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('shipping-2')">
+            <span class="fs-6 text-dark fw-medium">Do you ship internationally?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'shipping-2' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'shipping-2') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              Yes, we ship globally. International shipping rates are calculated dynamically at checkout based on your location. Please note that international customers are responsible for any applicable customs duties or import taxes upon delivery.
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Section 3: Returns & Exchanges -->
+      <div class="mb-5" id="returns">
+        <h3 class="h4 fw-bold text-dark border-bottom pb-3 mb-4">Returns & Exchanges</h3>
+
+        <!-- Accordion Item 5 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('returns-1')">
+            <span class="fs-6 text-dark fw-medium">What is your return policy?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'returns-1' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'returns-1') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              We accept returns of unworn, unwashed items with original tags intact within 30 days of delivery. Refunds are issued to the original payment method, minus a small return shipping fee. Final sale items are not eligible for return.
+            </div>
+          }
+        </div>
+
+        <!-- Accordion Item 6 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('returns-2')">
+            <span class="fs-6 text-dark fw-medium">How do I return or exchange a gift?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'returns-2' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'returns-2') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              Gift recipients can process an exchange or receive store credit without notifying the original purchaser. Simply visit our Returns Portal and select the "Returning a Gift" option, then enter the order number provided on the gift receipt.
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Section 4: Care Instructions -->
+      <div class="mb-5" id="care">
+        <h3 class="h4 fw-bold text-dark border-bottom pb-3 mb-4">Care Instructions</h3>
+
+        <!-- Accordion Item 7 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('care-1')">
+            <span class="fs-6 text-dark fw-medium">How should I wash organic cotton pieces?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'care-1' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'care-1') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              For our organic cotton essentials, we recommend machine washing on a gentle, cold cycle with similar colors using a mild, baby-safe detergent. Tumble dry on low or lay flat to dry to preserve the softness and prevent shrinkage.
+            </div>
+          }
+        </div>
+
+        <!-- Accordion Item 8 -->
+        <div class="border-bottom pb-3 mb-3">
+          <button class="btn w-100 d-flex justify-content-between align-items-center text-start py-2 px-0 bg-transparent shadow-none" (click)="toggleAccordion('care-2')">
+            <span class="fs-6 text-dark fw-medium">Caring for delicate knits and linen?</span>
+            <span class="material-symbols-outlined text-muted">{{ activeId === 'care-2' ? 'expand_less' : 'expand_more' }}</span>
+          </button>
+          @if (activeId === 'care-2') {
+            <div class="pt-2 pb-3 text-secondary pe-3 pe-md-5">
+              Delicate knits should be hand-washed in cool water and laid flat to dry to maintain their shape. Linen pieces can be machine washed on delicate/cold, but should always be air-dried. A cool iron may be used on linen if desired.
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Contact CTA Box -->
+      <div class="bg-light border rounded-4 p-4 p-md-5 text-center mt-5">
+        <h4 class="fw-bold mb-2">Still need help?</h4>
+        <p class="text-secondary mb-4">Our concierge team is available to assist you with any specific questions.</p>
+        <a class="btn btn-dark text-uppercase tracking-widest px-4 py-2 rounded-1 small fw-semibold" href="#">Contact Concierge</a>
+      </div>
+    </section>
+  </div>
+</main>
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <!-- Help Center Column -->
+      <div class="col-6 text-end">
+        <h3 class="small fw-bold tracking-widest uppercase mb-3 text-white-50">HELP CENTER</h3>
+        <nav class="nav flex-column gap-2 align-items-end text-white-50">
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">يبحث</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">Exchange/Return</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">Track your order</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">FAQ</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">شروط الخدمة</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">Privacy Policy</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">Contact Info</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">Contact Us</a>
+          <a class="nav-link text-white-50 p-0 hover-white" href="#">About Us</a>
+        </nav>
+      </div>
+
+      <!-- Shop By Category Column -->
+      <div class="col-6 text-end">
+        <h3 class="small fw-bold tracking-widest uppercase mb-3 text-white-50">SHOP BY CATEGORY</h3>
+        <nav class="nav flex-column gap-2 align-items-end text-white-50">
+          <a class="nav-link text-white-50 p-0" href="#">الرجال</a>
+          <a class="nav-link text-white-50 p-0" href="#">قمصان وقمصان رجالية</a>
+          <a class="nav-link text-white-50 p-0" href="#">Compressions</a>
+          <a class="nav-link text-white-50 p-0" href="#">قمصان بدون أكمام</a>
+          <a class="nav-link text-white-50 p-0" href="#">بنطلونات رياضية للرجال</a>
+          <a class="nav-link text-white-50 p-0" href="#">Men's Shorts</a>
+          <a class="nav-link text-white-50 p-0" href="#">Hoodies & Sweatshirts</a>
+          <a class="nav-link text-white-50 p-0" href="#">Jersey</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-4 border-top border-secondary d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <button class="btn btn-secondary rounded-circle d-flex align-items-center justify-content-center p-2 bg-opacity-25 border-0" style="width: 40px; height: 40px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <span class="material-symbols-outlined text-white">expand_less</span>
+      </button>
+      <p class="small text-white-50 m-0">Copyright © 2026 MavinWear. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

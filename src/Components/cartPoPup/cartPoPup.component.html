@@ -1,0 +1,106 @@
+
+<body>
+
+    <!-- Main Content -->
+    <main class="container-xxl mt-5 pt-5">
+        <header class="d-flex justify-content-between align-items-end mb-5 pb-4 border-bottom">
+            <h1 class="display-5">Shopping Bag</h1>
+            <a (click)="backToShop()" class="text-dark text-decoration-none border-bottom border-dark cursor-pointer" role="button">Continue Shopping</a>
+        </header>
+
+        <div class="row g-5">
+            <!-- Cart Items -->
+            <div class="col-lg-8">
+                <div class="d-none d-md-flex row text-uppercase text-muted small mb-4">
+                    <div class="col-6">Product</div>
+                    <div class="col-2 text-center">Price</div>
+                    <div class="col-2 text-center">Quantity</div>
+                    <div class="col-2 text-end">Total</div>
+                </div>
+
+                @for (item of showCart(); track item.id) {
+                    <div class="row align-items-center py-4 border-bottom g-3">
+                        <!-- Product Info -->
+                        <div class="col-12 col-md-6 d-flex align-items-center gap-3">
+                            <img [src]="item.coverImage" class="flex-shrink-0 object-fit-cover rounded" style="width: 80px; height: 100px;" alt="Product">
+                            <div>
+                                <h5 class="m-0 fs-6 fs-md-5">{{ item.title }}</h5>
+                                <p class="text-muted small mb-2">Category: {{ item.category }}</p>
+                                <button (click)="removeItem(item.id)" class="btn btn-link btn-sm text-dark p-0 text-decoration-underline">Remove</button>
+                            </div>
+                        </div>
+                        <!-- Price -->
+                        <div class="col-4 col-md-2 text-start text-md-center">
+                            <span class="d-md-none small text-muted">Price: </span>${{ item.price }}
+                        </div>
+                        <!-- Quantity -->
+                        <div class="col-4 col-md-2 text-center">
+                            <div class="input-group input-group-sm w-100 justify-content-center">
+                                <button (click)="cart.updateQuantity(item.id, -1)" class="btn btn-outline-secondary">-</button>
+                                <input type="text" class="form-control text-center px-1" style="max-width: 45px;" [value]="item.quantity" readonly>
+                                <button (click)="cart.updateQuantity(item.id, 1)" class="btn btn-outline-secondary">+</button>
+                            </div>
+                        </div>
+                        <!-- Total for item -->
+                        <div class="col-4 col-md-2 text-end fw-bold">
+                            <span class="d-md-none small text-muted">Total: </span>${{ item.price * item.quantity }}
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Summary -->
+            <div class="col-lg-4">
+                <div class="bg-light p-4 rounded">
+                    <h4>Subtotal</h4>
+                    <h2 class="text-primary mb-3">${{ totalPrice() || 0 }}</h2>
+                    <p class="small text-muted">Taxes and shipping calculated at checkout.</p>
+                    <button (click)="locationPage()" class="btn btn-dark w-100 py-3 text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-dark text-white py-5 mt-5">
+        <div class="container px-3 px-md-5 mx-auto">
+            <div class="row g-5 mb-5 text-center text-md-end">
+                <!-- Help Center Column -->
+                <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-end gap-3">
+                    <h3 class="text-uppercase mb-2 fs-6 tracking-widest">HELP CENTER</h3>
+                    <nav class="d-flex flex-column gap-2 text-white-50">
+                        <a class="text-white text-decoration-none" href="#">Search</a>
+                        <a class="text-white text-decoration-none" href="#">Exchange/Return</a>
+                        <a class="text-white text-decoration-none" href="#">Track your order</a>
+                        <a class="text-white text-decoration-none" href="#">FAQ</a>
+                        <a class="text-white text-decoration-none" href="#">شروط الخدمة</a>
+                        <a class="text-white text-decoration-none" href="#">Privacy Policy</a>
+                        <a class="text-white text-decoration-none" href="#">Contact Info</a>
+                        <a class="text-white text-decoration-none" href="#">Contact Us</a>
+                        <a class="text-white text-decoration-none" href="#">About Us</a>
+                    </nav>
+                </div>
+                <!-- Shop By Category Column -->
+                <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-end gap-3">
+                    <h3 class="text-uppercase mb-2 fs-6 tracking-widest">SHOP BY CATEGORY</h3>
+                    <nav class="d-flex flex-column gap-2 text-white-50">
+                        <a class="text-white text-decoration-none" href="#">الرجال</a>
+                        <a class="text-white text-decoration-none" href="#">قمصان وقمصان رجالية</a>
+                        <a class="text-white text-decoration-none" href="#">Compressions</a>
+                        <a class="text-white text-decoration-none" href="#">قمصان بدون أكمام</a>
+                        <a class="text-white text-decoration-none" href="#">بنطلونات رياضية للرجال</a>
+                        <a class="text-white text-decoration-none" href="#">Men's Shorts</a>
+                        <a class="text-white text-decoration-none" href="#">Hoodies & Sweatshirts</a>
+                        <a class="text-white text-decoration-none" href="#">Jersey</a>
+                    </nav>
+                </div>
+            </div>
+            <!-- Bottom Bar -->
+            <div class="pt-4 border-top border-secondary d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <p class="text-white-50 m-0 small">Copyright © 2026 MavinWear. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>

@@ -1,0 +1,141 @@
+:root {
+    --primary: #33163e;
+    --plum-deep: #4A2C55;
+    --surface: #f9f9f9;
+    --on-surface: #1a1c1c;
+    --paper: #FFFFFF;
+    --plum-wash: #F8F5F9;
+    --outline-variant: #cec3cd;
+}
+
+body {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: 'Inter', sans-serif;
+}
+
+.brand-title, .headline-md {
+    font-family: 'Libre Caslon Text', serif;
+    color: var(--plum-deep);
+}
+
+.custom-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--outline-variant);
+    z-index: 1030;
+}
+
+
+
+
+.btn-custom {
+    background-color: var(--paper);
+    color: var(--plum-deep);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 12px 32px;
+    border: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #e2e2e2;
+}
+
+.collection-card {
+    height: 600px;
+}
+
+.collection-card img {
+    transition: transform 0.7s ease;
+}
+
+.collection-card:hover img {
+    transform: scale(1.05);
+}
+
+.collection-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(74, 44, 85, 0.2);
+    transition: background-color 0.3s;
+}
+
+.collection-card:hover .collection-overlay {
+    background-color: rgba(74, 44, 85, 0.4);
+}
+
+.hover-show {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.3s ease;
+}
+
+.collection-card:hover .hover-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--plum-deep);
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.icon-btn:hover {
+    opacity: 0.7;
+}
+
+.footer-link {
+    color: rgba(248, 245, 249, 0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+}
+
+/* ==========================================
+   Media Queries حسب المقاسات المطلوبة بدقة
+   ========================================== */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .display-title {
+        font-size: 4rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .hero-section {
+        height: 85vh;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .hero-section {
+        height: 90vh;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /* تخصيصات الشاشات الكبيرة لو احتجت تعديل مساحات أو خطوط */
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    .max-container {
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

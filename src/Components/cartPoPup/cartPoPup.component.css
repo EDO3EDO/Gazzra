@@ -1,0 +1,83 @@
+/* Custom Component Styles */
+.container-fluid {
+    background-color: #f9f9f9;
+}
+
+
+.h-custom{
+  height: 800px !important;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #121212;
+}
+.font-serif {
+    font-family: 'Libre Caslon Text', serif;
+}
+.navbar {
+    padding: 1rem 0;
+}
+.btn-dark {
+    background-color: #33163e;
+    border: none;
+}
+.btn-dark:hover {
+    background-color: #4a2c55;
+}
+
+footer {
+    background-color: var(--ink, #121212);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff !important;
+}
+
+.text-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.hover-bg-white-20:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+
+
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    /* أضف تنسيقات الموبايل الأكبر هنا إذا احتجت */
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /* أضف تنسيقات التابلت هنا */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* أضف تنسيقات الديسك توب هنا */
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /* أضف تنسيقات الشاشات الكبيرة جداً هنا */
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    /* أضف تنسيقات الشاشات العملاقة هنا */
+}

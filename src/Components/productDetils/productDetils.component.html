@@ -1,0 +1,228 @@
+@for (item of showDetils(); track $index) {
+<body class="bg-surface text-on-surface">
+
+  <!-- Main Content -->
+  <main class="container max-w-container-max pb-section-gap px-3 px-md-5" style="padding-top: 15px;">
+
+        <!-- Product Section Layout -->
+        <div class="row g-4 g-lg-5 align-items-start">
+
+            <!-- Gallery (Left - 7 cols) -->
+            <div class="col-lg-7 d-flex flex-column gap-4">
+                <!-- Main Feature Image -->
+                <div class="position-relative w-full bg-surface-container-low rounded-3 overflow-hidden group aspect-square">
+                    <div class="position-absolute top-0 start-0 m-4 z-10 bg-dark text-white px-3 py-1 rounded-1 text-uppercase tracking-wider fs-7" style="font-size: 12px;">
+                        {{item.Restoc || 'Best Seller'}}
+                    </div>
+                    <img [src]="allImges()[selectedImageIndex()]" class="w-100 h-100 object-fit-cover transition-transform duration-700" [alt]="item.title">
+                </div>
+
+                <!-- Thumbnail Grid -->
+                <div class="row g-3">
+                  @for (img of allImges(); track $index) {
+                    <div class="col-3">
+                        <div class="ratio ratio-3-4 bg-surface-container-low rounded-3 overflow-hidden cursor-pointer"
+                            [class.border-2]="$index === selectedImageIndex()"
+                            [class.border-plum-deep]="$index === selectedImageIndex()"
+                            [class.opacity-75]="$index !== selectedImageIndex()"
+                            (click)="changeImge($index)">
+                            <img [src]="img" class="w-100 h-100 object-fit-cover" [alt]="'Thumb ' + ($index + 1)">
+                        </div>
+                    </div>
+                  }
+                </div>
+            </div>
+
+
+            <!-- Product Details & Actions (Right - 5 cols) -->
+            <div class="col-lg-5 d-flex flex-column">
+
+                <!-- Header & Price -->
+                <div class="mb-4">
+                    <h1 class="font-headline text-headline-xl text-plum-deep mb-2">{{item.title}}</h1>
+                    <div class="d-flex align-items-end gap-3">
+                        <span class="text-body-lg fw-semibold text-on-surface">${{item.price}}.00 USD</span>
+                        <span class="text-label-sm text-on-surface-variant">Tax included.</span>
+                    </div>
+                </div>
+
+                <!-- Color Selection (Dynamic from item.variants) -->
+                @if (item.variants && item.variants.length > 0) {
+                  <div class="mb-4">
+                      <p class="text-body-md mb-3 d-flex align-items-center gap-2">
+                          Color: <span class="fw-semibold text-plum-deep">{{ selectedVariant()?.color }}</span>
+                      </p>
+                      <div class="d-flex align-items-center gap-3">
+                          @for (variant of item.variants; track $index) {
+                              <button
+                                  (click)="selectColorVariant(variant)"
+                                  class="w-40 h-40 rounded-circle border p-1 bg-transparent shadow-none cursor-pointer"
+                                  [class.border-plum-deep]="selectedVariant()?.color === variant.color"
+                                  [class.border-outline-variant]="selectedVariant()?.color !== variant.color"
+                                  [style.width.px]="40" [style.height.px]="40"
+                                  [attr.aria-label]="variant.color">
+                                  <span class="d-block w-100 h-100 rounded-circle" [style.background-color]="variant.color"></span>
+                              </button>
+                          }
+                      </div>
+                  </div>
+                }
+
+                <!-- Size Selection (Dynamic based on selected color) -->
+                @if (availableSizes().length > 0) {
+                  <div class="mb-4">
+                      <div class="d-flex justify-content-between align-items-end mb-3">
+                          <p class="text-body-md mb-0">Size: <span class="fw-semibold text-plum-deep">{{ selectedSize()?.size }}</span></p>
+                          <button data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-link p-0 text-label-sm text-plum-deep text-decoration-none d-flex align-items-center gap-1 shadow-none">
+                              <span class="material-symbols-outlined" style="font-size: 16px;">straighten</span> Size guide
+                          </button>
+                      </div>
+                      <div class="d-flex flex-wrap gap-2">
+                          @for (sizeOption of availableSizes(); track $index) {
+                              <button
+                                  (click)="selectSize(sizeOption)"
+                                  class="btn rounded text-on-surface"
+                                  [class.bg-white]="selectedSize()?.size === sizeOption.size"
+                                  [class.border-2]="selectedSize()?.size === sizeOption.size"
+                                  [class.border-plum-deep]="selectedSize()?.size === sizeOption.size"
+                                  [class.text-plum-deep]="selectedSize()?.size === sizeOption.size"
+                                  [class.fw-medium]="selectedSize()?.size === sizeOption.size"
+                                  [class.btn-outline-secondary]="selectedSize()?.size !== sizeOption.size"
+                                  [style.width.px]="48" [style.height.px]="48">
+                                  {{ sizeOption.size }}
+                              </button>
+                          }
+                      </div>
+                  </div>
+                }
+
+                <!-- Add to Cart Action -->
+                <div class="mb-4">
+                    <p class="text-label-sm text-success mb-3 d-flex align-items-center gap-2" style="color: #2CD97B !important;">
+                        <span class="rounded-circle d-inline-block" style="width: 8px; height: 8px; background-color: #2CD97B;"></span>
+                        {{ selectedSize() ? selectedSize()?.stock : item.stock }} in stock — Free shipping
+                    </p>
+                    <button (click)="addToCart(item)"  class="btn btn-plum-deep w-100 py-3 px-4 rounded text-white text-cta text-uppercase tracking-widest d-flex justify-content-center align-items-center gap-2 shadow-sm">
+                        Add to Cart <span class="material-symbols-outlined" style="font-size: 18px;">shopping_bag</span>
+                    </button>
+                    <!-- Payment Methods Icons -->
+                    <div class="d-flex align-items-center justify-content-center gap-2 mt-3 opacity-60">
+                        <div class="px-2 py-1 bg-surface-container rounded-1 border border-outline-variant text-dark fw-bold" style="font-size: 9px;">VISA</div>
+                        <div class="px-2 py-1 bg-surface-container rounded-1 border border-outline-variant text-dark fw-bold" style="font-size: 9px;">MC</div>
+                        <div class="px-2 py-1 bg-surface-container rounded-1 border border-outline-variant text-dark fw-bold" style="font-size: 9px;">AMEX</div>
+                        <div class="px-2 py-1 bg-surface-container rounded-1 border border-outline-variant text-dark fw-bold" style="font-size: 9px;">PAYPAL</div>
+                    </div>
+                </div>
+
+
+                <!-- Accordion Details -->
+                <div class="accordion accordion-flush border-top border-outline-variant">
+                    <div class="accordion-item border-bottom border-outline-variant">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed shadow-none bg-transparent text-body-lg text-plum-deep py-4" type="button" data-bs-toggle="collapse" data-bs-target="#descTab">Description</button>
+                        </h2>
+                        <div id="descTab" class="accordion-collapse collapse show">
+                            <div class="accordion-body text-body-md text-on-surface-variant px-0 pb-4">
+                                <p class="mb-2">Classic crewneck cotton t-shirt with a relaxed fit and a minimalist silhouette. Soft, breathable fabric that drapes naturally.</p>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>• 100% Organic Pima Cotton</li>
+                                    <li>• Ribbed crew neckline</li>
+                                    <li>• Drop shoulder for relaxed fit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-bottom border-outline-variant">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed shadow-none bg-transparent text-body-lg text-plum-deep py-4" type="button" data-bs-toggle="collapse" data-bs-target="#careTab">Care Instructions</button>
+                        </h2>
+                        <div id="careTab" class="accordion-collapse collapse">
+                            <div class="accordion-body text-body-md text-on-surface-variant px-0 pb-4">
+                                Machine wash cold with like colors. Tumble dry low or lay flat to dry. Do not bleach.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-bottom border-outline-variant">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed shadow-none bg-transparent text-body-lg text-plum-deep py-4" type="button" data-bs-toggle="collapse" data-bs-target="#shipTab">Shipping & Returns</button>
+                        </h2>
+                        <div id="shipTab" class="accordion-collapse collapse">
+                            <div class="accordion-body text-body-md text-on-surface-variant px-0 pb-4">
+                                Free standard shipping on orders over $100. Easy returns within 30 days of purchase.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Shop the Look Section (Bottom full width) -->
+        <section class="border-top border-outline-variant pt-5 mt-5">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+                <h2 class="font-headline text-headline-md text-plum-deep max-w-md">Complete the look with everyday essentials</h2>
+            </div>
+            <div class="row g-4">
+              @for (otherItem of Showproduct(); track $index) {
+                <div [routerLink]="['/details' , otherItem.id]" class="col-6 col-sm-6 col-lg-3 product-card group cursor-pointer">
+                  <div class="img-frame position-relative aspect-ratio-3-4 overflow-hidden bg-light">
+                    <div class="position-absolute top-0 start-0 m-3 bg-dark text-white badge-custom z-1">Best seller</div>
+                    <img class="w-100 h-100 object-fit-cover product-img" [src]="otherItem.coverImage" alt="Essential Cotton Tee">
+                  </div>
+                  <div class="mt-3">
+                    <h3 class="body-lg text-dark mb-1">{{otherItem.title}}</h3>
+                    <p class="body-md text-secondary">${{otherItem.price}}.00 USD</p>
+                    <div class="d-flex gap-2 mt-2">
+                      @if (otherItem.variants) {
+                        @for (v of otherItem.variants; track $index) {
+                          <div class="color-dot rounded-circle border" [style.background-color]="v.color"></div>
+                        }
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="w-full bg-plum-deep text-white pt-5 pb-4 mt-5">
+        <div class="container max-w-container-max px-3 px-md-5">
+            <div class="row g-4">
+                <div class="col-md-6 d-flex flex-column justify-content-between mb-4 mb-md-0">
+                    <div>
+                        <h2 class="font-headline text-headline-md text-plum-wash mb-3">Meadow</h2>
+                        <p class="text-body-md text-plum-wash opacity-75 max-w-sm">Crafting premium wellness and elevated everyday essentials for the modern lifestyle.</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-label-sm text-plum-wash opacity-50 mb-0">© 2026 Meadow Premium Wellness. Crafted for Commerce.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="text-label-sm text-plum-wash mb-3 text-uppercase tracking-widest opacity-50">Legal</h3>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">Terms of Service</a></li>
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">Your Privacy Choices</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="text-label-sm text-plum-wash mb-3 text-uppercase tracking-widest opacity-50">Navigation</h3>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">Sitemap</a></li>
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-body-md text-plum-wash opacity-75 text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+}
+
+<!-- Modal Size Guide (موجود كما هو بدون تعديل) -->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <!-- (نفس محتوى المودال السابق) -->
+</div>

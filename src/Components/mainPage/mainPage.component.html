@@ -1,0 +1,171 @@
+<div>
+  <!-- TopNavBar -->
+  <header class="fixed-top custom-header border-bottom bg-white bg-opacity-90 backdrop-blur">
+    <div class="container-fluid max-w-container px-4 py-3 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand brand-title text-plum-deep m-0" href="#">Meadow</a>
+
+      <div class="d-flex align-items-center gap-3 text-plum-deep">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" name="search" [(ngModel)]="searchText" (input)="checkSearchInput()" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-link text-plum-deep p-0 hover-opacity"><span class="material-symbols-outlined">search</span></button>
+        </form>
+        <button (click)="cartPage()" class="btn btn-link text-plum-deep p-0 hover-opacity"><span class="material-symbols-outlined">shopping_bag</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-5 mt-4">
+    <!-- Hero Section -->
+    <section class="hero-section position-relative w-100 d-flex align-items-center justify-content-center px-3 px-md-5">
+        <div class="position-absolute top-0 start-0 w-100 h-100 z-0 overflow-hidden">
+            <img class="w-100 h-100 object-fit-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7m5j3VcyzkUYAh1CCzpLs7QQqdFdqBkmT0vykB6qwCm9YfB3-JoSyAZeopPQUkJ1AuNTieSHDPXaDn2D1y4p6S8oBdCAw7W6wUA2VXzvIxR-2MNFPVLCI5QUpBrhWyVxDK47nnaMdzOKsKHO5E0pgG0nB9gVejMht9_Mz7TFI_gPVw-hz2uuNfKUCAmrHIxc00eoQtTXPr7CgDELk36Iv1zCSJzwgGm6DiprarlUDd0VYgIE4yR0b" alt="Hero Image">
+        </div>
+        <div class="position-relative z-1 text-center d-flex flex-column align-items-center">
+            <h1 class="display-title text-white drop-shadow mb-3">Feels like you</h1>
+            <p class="body-lg text-white mb-4 drop-shadow">Thoughtfully made pieces for everyday wear</p>
+            <div class="d-flex flex-column flex-sm-row gap-3">
+                <button class="btn btn-light text-plum-deep cta-btn px-4 py-3 text-uppercase">SHOP WOMEN</button>
+                <button class="btn btn-light text-plum-deep cta-div cta-btn px-4 py-3 text-uppercase">SHOP MEN</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center mt-5">
+      <h1 class="section-heading text-ink text-uppercase mb-4">BEST SELLERS</h1>
+    </div>
+
+    <!-- Best Sellers Section (تعرض 4 منتجات افتراضياً والكل عند الضغط على View All) -->
+    <section class="py-seci py-sec px-3 px-md-5 mx-auto max-w-container">
+      <div class="row g-4">
+        @for (item of displayedBestProducts; track $index) {
+          <div [routerLink]="['detils' , item.id]" class="col-6 col-sm-6 col-lg-3 product-card group cursor-pointer">
+            <div class="img-frame position-relative aspect-ratio-3-4 overflow-hidden bg-light">
+              <div class="position-absolute top-0 start-0 m-3 bg-dark text-white badge-custom z-1">{{item.Restoc}}</div>
+              <img class="w-100 h-100 object-fit-cover product-img" [src]="item.coverImage" alt="Essential Cotton Tee">
+              <button (click)="openQuickView(item, $event)" class="position-absolute bottom-0 end-0 m-3 bg-transparent text-white p-3 border-0 cart-btn">
+                <span class="material-symbols-outlined change-hover">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class="mt-3">
+              <h3 class="body-lg text-dark mb-1">{{item.title}}</h3>
+              <p class="body-md text-secondary">${{item.price}}.00 USD</p>
+              <div (click)="$event.stopPropagation()" class="d-flex gap-2 mt-2">
+                @for (variant of item.variants; track $index) {
+                  <div
+                    (click)="selectVariantColor(item, variant, $event)"
+                    class="color-dot rounded-circle border cursor-pointer"
+                    [style.background-color]="variant.color"
+                    [title]="variant.color + ' - Size: ' + variant.size">
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- زر View All التفاعلي -->
+    <div class="d-flex justify-content-center my-4">
+      <h2 (click)="toggleViewAllBest()" class="section-heading custom-viwe text-ink text-uppercase mb-4 cursor-pointer" role="button">
+        {{ showAllBest ? 'View Less' : 'View All' }}
+      </h2>
+    </div>
+
+    <!-- Collection Section -->
+    <section class="px-3 mt-5 max-w-container mx-auto">
+        <div class="text-center">
+            <h2 class="section-heading text-ink text-uppercase mb-4">DISCOVER BY COLLECTION</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a (click)="check(orderSelected()[0].orderUid)" [class.Gamed]="orderSelected()[0].select" class="filter-badge px-3 py-2 text-decoration-none cursor-pointer">ALL</a>
+                <a (click)="check(orderSelected()[1].orderUid)" [class.Gamed]="orderSelected()[1].select" class="filter-badge px-3 py-2 text-decoration-none cursor-pointer">HOODIES</a>
+                <a (click)="check(orderSelected()[2].orderUid)" [class.Gamed]="orderSelected()[2].select" class="filter-badge px-3 py-2 text-decoration-none cursor-pointer active-badge">JACKETS</a>
+                <a (click)="check(orderSelected()[3].orderUid)" [class.Gamed]="orderSelected()[3].select" class="filter-badge px-3 py-2 text-decoration-none cursor-pointer">KNITWEAR</a>
+                <a (click)="check(orderSelected()[4].orderUid)" [class.Gamed]="orderSelected()[4].select" class="filter-badge px-3 py-2 text-decoration-none cursor-pointer">PANTS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="py-section py-sec px-3 px-md-5 mx-auto max-w-container">
+      <div class="row g-4">
+        @for (item of Showproduct(); track $index) {
+          <div [routerLink]="['detils' , item.id]" class="col-6 col-sm-6 col-lg-3 product-card group cursor-pointer">
+            <div class="img-frame position-relative aspect-ratio-3-4 overflow-hidden bg-light">
+              <img class="w-100 h-100 object-fit-cover product-img" [src]="item.coverImage" alt="Essential Cotton Tee">
+              <button (click)="openQuickView(item, $event)" class="position-absolute bottom-0 end-0 m-3 bg-transparent text-white p-3 border-0 cart-btn">
+                <span class="material-symbols-outlined change-hover">add_shopping_cart</span>
+              </button>
+            </div>
+            <div (click)="$event.stopPropagation()" class="mt-3">
+              <h3 class="body-lg text-dark mb-1">{{item.title}}</h3>
+              <p class="body-md text-secondary">${{item.price}}.00 USD</p>
+              <div (click)="$event.stopPropagation()" class="d-flex gap-2 mt-2">
+                @for (variant of item.variants; track $index) {
+                  <div
+                    (click)="selectVariantColor(item, variant, $event)"
+                    class="color-dot rounded-circle border cursor-pointer"
+                    [style.background-color]="variant.color"
+                    [title]="variant.color + ' - Size: ' + variant.size">
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <app-clientChat></app-clientChat>
+    <!-- Shop the Look Section -->
+  </main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <!-- Help Center Column -->
+      <div class="col-6 text-end">
+        <h3 class="small fw-bold tracking-widest uppercase mb-3 text-white-50">HELP CENTER</h3>
+        <nav class="nav flex-column gap-2 align-items-end text-white-50">
+            <a (click)="return()" class="nav-link text-white-50 p-0 hover-white cursour-pointer ">Exchange/Return</a>
+            <a (click)="FAQ()" class="nav-link text-white-50 p-0 hover-white cursour-pointer">FAQ</a>
+            <a (click)="termes()" class="nav-link text-white-50 p-0 hover-white cursour-pointer ">Terms of Service</a>
+            <a (click)="contact()" class="nav-link text-white-50 p-0 hover-white cursour-pointer ">Contact Us</a>
+            <a (click)="US()" class="nav-link text-white-50 p-0 hover-white cursour-pointer">About Us</a>
+        </nav>
+      </div>
+
+      <!-- Shop By Category Column -->
+      <div class="col-6 text-end">
+        <h3 class="small fw-bold tracking-widest uppercase mb-3 text-white-50">SHOP BY CATEGORY</h3>
+        <nav class="nav flex-column gap-2 align-items-end text-white-50">
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Men</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Men's Shirts</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Compressions</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Tank Tops</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Men's Sweatpants</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Men's Shorts</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Hoodies & Sweatshirts</a>
+            <a class="nav-link text-white-50 p-0 cursor-pointer" href="#">Jersey</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-4 border-top border-secondary d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <div></div>
+        <p class="small text-white-50 m-0">Copyright © 2026 MavinWear. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <!-- Popup Component -->
+  @if (isButtonVisible) {
+    <button (click)="adminPage()" class="btn bg-info">siuuuuuu</button>
+  }
+  <app-popup [isOpen]="isQuickViewOpen" [product]="selectedProduct()" (close)="closeQuickView()"></app-popup>
+
+
+
+</div>

@@ -1,0 +1,137 @@
+:root {
+    --plum-deep: #4A2C55;
+    --plum-wash: #F8F5F9;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-headline {
+    font-family: 'Libre Caslon Text', serif;
+}
+
+.bg-plum-deep {
+    opacity: 0.9;
+    background-color: #33163e !important;
+}
+
+.text-plum-deep {
+    color: var(--plum-deep) !important;
+}
+
+.bg-plum-wash {
+    background-color: var(--plum-wash) !important;
+}
+
+.sidebar {
+    width: 260px;
+}
+
+.ms-md-260 {
+    margin-left: 260px;
+}
+
+.brand-icon-box {
+    width: 40px;
+    height: 40px;
+}
+
+.w-16 {
+    width: 64px;
+}
+
+.h-16 {
+    height: 64px;
+}
+
+.tracking-widest {
+    letter-spacing: 0.1em;
+}
+
+.small-text {
+    font-size: 10px;
+}
+
+.tiny-text {
+    font-size: 11px;
+}
+
+.custom-nav-link:hover {
+    background-color: rgba(74, 44, 85, 0.08);
+    color: var(--plum-deep) !important;
+}
+
+.custom-input {
+    background-color: transparent !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.custom-input:focus {
+    border-color: var(--plum-deep) !important;
+    box-shadow: none !important;
+}
+
+.border-dashed {
+    border-style: dashed !important;
+}
+
+.upload-box {
+    transition: all 0.3s ease;
+    min-height: 280px;
+}
+
+.upload-box:hover {
+    border-color: var(--plum-deep) !important;
+    background-color: var(--plum-wash);
+}
+
+.upload-box:hover .upload-icon-wrapper {
+    background-color: rgba(74, 44, 85, 0.1);
+}
+
+.btn-hover-custom:hover {
+  padding: 15px;
+}
+
+.btn-outline-plum:hover {
+    background-color: var(--plum-wash);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #cec3cd;
+    border-radius: 20px;
+}
+
+@media (max-width: 575.98px) {
+    .ms-md-260 {
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .ms-md-260 {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .ms-md-260 {
+        margin-left: 260px !important;
+    }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+}

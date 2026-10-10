@@ -1,0 +1,126 @@
+/* Custom CSS matching Plum & Petal Design Tokens */
+
+.max-w-custom {
+    max-width: 720px;
+}
+
+.text-plum {
+    color: #4A2C55 !important;
+}
+
+.brand-title {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.form-heading {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 1.85rem;
+    font-weight: 400;
+    color: #121212;
+}
+
+.form-label {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #121212;
+}
+
+.input-underline {
+    border: none;
+    border-bottom: 1px solid #121212;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent !important;
+    font-size: 1rem;
+}
+
+.input-underline:focus {
+    outline: none;
+    box-shadow: none !important;
+    border-bottom: 2px solid #4A2C55;
+}
+
+.input-underline::placeholder {
+    color: #cec3cd;
+}
+
+.min-height-100 {
+    min-height: 100px;
+}
+
+.resize-none {
+    resize: none;
+}
+
+.cta-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    border-radius: 0.125rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-plum {
+    background-color: #4A2C55;
+    color: #FFFFFF;
+    border: 1px solid #4A2C55;
+}
+
+.btn-plum:hover {
+    background-color: #472e53;
+    border-color: #472e53;
+    color: #FFFFFF;
+}
+
+.btn-outline-plum {
+    background-color: transparent;
+    color: #4A2C55;
+    border: 1px solid #4A2C55;
+}
+
+.btn-outline-plum:hover {
+    background-color: #F8F5F9;
+    color: #4A2C55;
+    border-color: #4A2C55;
+}
+
+.lang-btn {
+    border-color: #cec3cd;
+    color: #4c444d;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.lang-btn:hover {
+    border-color: #4A2C55;
+    color: #4A2C55;
+    background-color: transparent;
+}
+
+.hover-dark:hover {
+    color: #121212 !important;
+}
+
+.hover-plum:hover {
+    color: #4A2C55 !important;
+}
+
+.cursor-help {
+    cursor: help;
+}
+
+/* Responsive helper adjustments */
+@media (min-width: 576px) {
+    .sm-flex-row {
+        flex-direction: row !important;
+    }
+    .sm-w-auto {
+        width: auto !important;
+    }
+}

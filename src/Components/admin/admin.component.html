@@ -1,0 +1,62 @@
+
+
+    <!-- SideNavBar -->
+    <nav class="d-none d-md-flex flex-column p-4 bg-plum-wash border-end sidebar position-fixed top-0 start-0 h-100 z-3">
+        <!-- Header -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="brand-icon-box rounded-circle bg-secondary-subtle d-flex align-items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-plum-deep">local_florist</span>
+            </div>
+            <div>
+                <h1 class="font-headline fs-5 text-plum-deep m-0 fw-bold">Plum & Petal</h1>
+                <p class="font-label text-muted text-uppercase tracking-widest mb-0 small-text">Luxury Atelier</p>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex-grow-1 d-flex flex-column gap-2">
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" routerLink="product" routerLinkActive="active">
+                <span class="material-symbols-outlined" >inventory_2</span>
+                <span class="text-uppercase tracking-widest small">Products</span>
+            </a>
+
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" routerLink="dash" routerLinkActive="active">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span class="text-uppercase tracking-widest small">Orders</span>
+            </a>
+
+                        <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" routerLink="adminchate" routerLinkActive="active">
+                            <span class="material-symbols-outlined">chat</span>
+                            <span class="text-uppercase tracking-widest small">Customers Chat</span>
+                        </a>
+
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" routerLink="custom" routerLinkActive="active">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-uppercase tracking-widest small">Customers</span>
+            </a>
+
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" routerLink="return" routerLinkActive="active">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-uppercase tracking-widest small">return</span>
+            </a>
+        </div>
+
+
+        <!-- Footer Links -->
+        <div class="d-flex flex-column gap-1 pt-3 border-top border-secondary-subtle">
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" href="#">
+                <span class="material-symbols-outlined fs-5">contact_support</span>
+                <span class="text-uppercase tracking-widest tiny-text">Support</span>
+            </a>
+            <a class="d-flex align-items-center gap-3 px-3 py-2 text-secondary-emphasis rounded-3 text-decoration-none custom-nav-link" href="#">
+                <span class="material-symbols-outlined fs-5">logout</span>
+                <span class="text-uppercase tracking-widest tiny-text">Sign Out</span>
+            </a>
+        </div>
+    </nav>
+
+
+
+
+
+  <router-outlet></router-outlet>

@@ -1,0 +1,211 @@
+<main class="container-fluid w-75 pt-5 mt-4 px-3 px-md-4 pb-5 me-3" dir="rtl">
+    <div class="bg-white rounded-4 shadow-sm overflow-hidden mb-4 border">
+        <!-- Batch Action Banner -->
+        <div class="d-none px-4 py-3 bg-light text-primary d-flex align-items-center justify-content-between small fw-semibold border-bottom" id="bulkActionBar">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined fs-6">check_box</span>
+                <span id="selectedCountText">0 طلبات محددة</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-success text-white" type="button">موافقة جماعية</button>
+                <button class="btn btn-sm btn-outline-danger" type="button">رفض المحدد</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table align-middle mb-0 text-end">
+                <thead class="table-light text-secondary small text-uppercase">
+                    <tr>
+                        <th class="py-3 px-4 text-center" style="width: 50px;">
+                            <input class="form-check-input cursor-pointer shadow-none" id="selectAllCheckbox" type="checkbox">
+                        </th>
+                        <th class="py-3 px-4">رقم الطلب (Order #)</th>
+                        <th class="py-3 px-4">العميل & رقم الهاتف (Customer)</th>
+                        <th class="py-3 px-4" style="width: 35%;">تفاصيل المشكلة / سبب الإرجاع (Issue & Reason)</th>
+                        <th class="py-3 px-4">الحالة (Status)</th>
+                        <th class="py-3 px-4 text-start">إجراءات سريعة (Actions)</th>
+                    </tr>
+                </thead>
+                <tbody id="returnsTableBody">
+                    @if (isLoading()) {
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">جاري تحميل طلبات الإرجاع...</td>
+                        </tr>
+                    } @else if (returnOrders().length === 0) {
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">لا توجد طلبات إرجاع حالياً.</td>
+                        </tr>
+                    } @else {
+                        @for (order of returnOrders(); track order.id) {
+                            <tr class="return-row transition-all" [attr.data-order]="order.SerialNumber" [attr.data-phone]="order.customerData?.Phone" [attr.data-status]="order.returnStatus">
+
+                                <!-- Checkbox -->
+                                <td class="py-4 px-4 text-center align-top">
+                                    <input class="row-checkbox form-check-input cursor-pointer mt-1 shadow-none" type="checkbox">
+                                </td>
+
+                                <!-- رقم الطلب وتاريخه واسم المنتج -->
+                                <td class="py-4 px-4 align-top">
+                                    <div class="vstack gap-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-6 fw-bold text-primary">{{ order.SerialNumber }}</span>
+                                            <span class="badge bg-primary bg-opacity-10 text-primary fw-medium" style="font-size: 0.75rem;">
+                                                {{ order.returnStatus === 'requested' ? 'طلب إرجاع' : order.returnStatus }}
+                                            </span>
+                                        </div>
+                                        <p class="text-muted small d-flex align-items-center gap-1 mb-0" style="font-size: 0.8rem;">
+                                            <span class="material-symbols-outlined fs-6">schedule</span>
+                                            {{ order.returnRequestedAt | date: 'short' }}
+                                        </p>
+                                        @if (order.returnItems && order.returnItems.length > 0) {
+                                            <p class="text-secondary small mb-0 fw-medium">{{ order.returnItems[0].name }}</p>
+                                        }
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 align-top">
+                                    <div class="vstack gap-1">
+                                        <p class="fw-medium text-dark mb-0">{{ order.customerData?.Name }}</p>
+                                        <div class="d-flex align-items-center gap-1 text-primary small justify-content-start" dir="ltr">
+                                            <span class="material-symbols-outlined fs-6 text-muted">call</span>
+                                            <span class="fw-semibold">{{ order.customerData?.Phone }}</span>
+                                        </div>
+                                        <p class="text-muted small mb-0" style="font-size: 0.8rem;">
+                                            {{ order.customerData?.Location }} - {{ order.customerData?.area }}
+                                        </p>
+                                    </div>
+                                </td>
+
+                                <!-- تفاصيل المشكلة / سبب الإرجاع -->
+                                <td class="py-4 px-4 align-top">
+                                    <div class="p-3 rounded-3 bg-light vstack gap-2 border">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bg-danger rounded-circle" style="width: 8px; height: 8px;"></span>
+                                            <span class="small fw-bold text-danger">سبب الإرجاع</span>
+                                        </div>
+                                        <p class="small text-dark mb-0 lh-base">
+                                            “{{ order.returnItems?.[0]?.comments || order.issueDescription || 'لا توجد تفاصيل مضافة' }}”
+                                        </p>
+                                    </div>
+                                </td>
+
+                                <!-- الحالة -->
+                                <td class="py-4 px-4 align-top">
+                                    <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 fw-semibold">
+                                        <span class="bg-danger rounded-circle" style="width: 6px; height: 6px;"></span> قيد المراجعة
+                                    </span>
+                                </td>
+
+                                <!-- إجراءات سريعة (ضفنا زرار عرض التفاصيل لفتح المودال) -->
+                                <td class="py-4 px-4 align-top text-start">
+                                    <div class="d-flex align-items-center justify-content-start gap-2">
+                                        <button class="btn btn-sm btn-light border text-primary p-2"
+                                                title="عرض تفاصيل المنتجات المرتجعة"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#returnItemsModal"
+                                                (click)="openOrderDetails(order)">
+                                            <span class="material-symbols-outlined fs-6">visibility</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer & Pagination -->
+        <div class="p-4 bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 border-top">
+            <p class="text-muted small mb-0">عرض <span class="fw-semibold text-primary">2</span> من أصل <span class="fw-semibold text-primary">24</span> طلباً</p>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-white border text-secondary d-flex align-items-center gap-1 bg-white" disabled type="button">
+                    <span class="material-symbols-outlined fs-6">chevron_right</span> السابق
+                </button>
+                <button class="btn btn-sm btn-white border text-secondary d-flex align-items-center gap-1 bg-white" type="button">
+                    <span>التالي</span> <span class="material-symbols-outlined fs-6">chevron_left</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="modal fade" id="returnItemsModal" aria-hidden="true" aria-labelledby="returnItemsModalLabel" tabindex="-1" dir="rtl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="returnItemsModalLabel">
+          تفاصيل منتجات الإرجاع للطلب: <span class="text-primary">{{ selectedOrderForModal()?.SerialNumber }}</span>
+        </h5>
+        <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        @if (selectedOrderForModal(); as order) {
+          <div class="container-fluid">
+            <!-- معلومات العميل العلوية -->
+            <div class="row bg-light p-3 rounded-3 border mb-3">
+              <div class="col-md-6">
+                <p class="mb-1"><strong>اسم العميل:</strong> {{ order.customerData?.Name }}</p>
+                <p class="mb-0"><strong>الهاتف:</strong> {{ order.customerData?.Phone }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-1"><strong>العنوان:</strong> {{ order.customerData?.Location }} - {{ order.customerData?.area }}</p>
+                <p class="mb-0"><strong>تاريخ الإرجاع:</strong> {{ order.returnRequestedAt | date: 'short' }}</p>
+              </div>
+            </div>
+            <h6 class="fw-bold text-dark mb-2">المنتجات المطلوب إرجاعها</h6>
+            <div class="table-responsive border rounded-3">
+              <table class="table align-middle mb-0 text-end">
+                <thead class="table-light small">
+                  <tr>
+                    <th>صورة / المنتج</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th>المقاس / اللون</th>
+                    <th>سبب الإرجاع / الملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of order.returnItems; track $index) {
+                    <tr>
+                      <td class="py-3">
+                        <div class="d-flex align-items-center gap-2">
+                          @if (item.image) {
+                            <img [src]="item.image" alt="product" class="rounded border" style="width: 40px; height: 40px; object-fit: cover;">
+                          }
+                          <span class="fw-semibold">{{ item.name }}</span>
+                        </div>
+                      </td>
+                      <td>{{ item.price }} ج.م</td>
+                      <td><span class="badge bg-secondary">{{ item.quantity }}</span></td>
+                      <td>
+                        <span class="small text-muted">المقاس: {{ item.size }}</span><br>
+                        <span class="small text-muted">اللون: {{ item.color }}</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-danger bg-opacity-10 text-danger mb-1">{{ item.reason }}</span>
+                        @if (item.comments) {
+                          <p class="small text-secondary mb-0">“{{ item.comments }}”</p>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        } @else {
+          <p class="text-center text-muted py-3">جاري التحميل...</p>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+
+    </div>
+  </div>
+</div>

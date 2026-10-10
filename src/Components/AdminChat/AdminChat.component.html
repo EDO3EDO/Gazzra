@@ -1,0 +1,139 @@
+<main class="main-content container-fluid w-75 px-3 px-md-4 py-4 me-3">
+    <div class="row g-4">
+        <section class="col-12 col-xl-8 d-flex flex-column rounded-4 bg-white shadow-sm overflow-hidden chat-sidebar-height">
+            <!-- Active Chat Header -->
+            <div class="p-3 px-4 bg-white border-bottom d-flex align-items-center justify-content-between gap-3 z-1">
+                <div class="d-flex align-items-center gap-3 min-w-0">
+                    <div class="position-relative flex-shrink-0">
+                        <div class="chat-avatar bg-white p-1 rounded-3 shadow-sm">
+                            <img class="w-100 h-100 object-fit-cover rounded-2" [src]=" 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGxV-X-cMtWu1lgyXT_0MAmjJjHNnAp8-39Du0dshf4yWhUVjFjuh1ApV-z8fQ752OZv_uWLv5gY5yn6kTuv7Pg7koMytRg8saWsnAVyQH68eV8yH1PIHobSuR0Mo-IBps9eVK--1IJkvoLFYxm3-HhI8vFBqBd0-B1uXARU7ty2fcaZIzHp1nwPltVivWLTxCcJI35HaWLhJaNRt758vtyYelfQ-VmAear_dIzLfxezs15jVjXna0'" alt="avatar">
+                        </div>
+                        <span class="position-absolute bottom-0 start-0 p-1 bg-success border border-light rounded-circle"></span>
+                    </div>
+                    <div class="d-flex flex-column min-w-0">
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <h3 class="h6 mb-0 text-primary fw-bold text-truncate">Name</h3>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mt-1 small">
+                            <span class="text-success d-flex align-items-center gap-1"><span class="dot-indicator bg-success rounded-circle"></span> نشطة الآن</span>
+                            <span class="text-muted">·</span>
+                            <span class="text-muted text-truncate">نافذة المتجر الرئيسي (الرياض)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                    <button class="btn btn-sm btn-light text-muted border-0" title="تحويل"><span class="material-symbols-outlined fs-5">forward_to_inbox</span></button>
+                    <button class="btn btn-sm btn-light text-muted border-0" title="إرفاق بوليصة"><span class="material-symbols-outlined fs-5">receipt_long</span></button>
+                    <button class="btn btn-sm bg-plum-wash text-plum-deep border-0"><span class="material-symbols-outlined fs-5">check_circle</span></button>
+                </div>
+            </div>
+
+            <!-- Messages Stream Area -->
+            <div class="flex-grow-1 overflow-y-auto p-3 d-flex flex-column gap-3 bg-light">
+                @for (msg of chatService.activeMessages(); track msg.id) {
+                    <div class="d-flex flex-column" [ngClass]="msg.isAdminResponse ? 'align-items-end' : 'align-items-start'">
+                        <div class="p-3 rounded-3 max-w-75 shadow-sm" [ngClass]="msg.isAdminResponse ? 'bg-plum-deep text-white' : 'bg-white text-primary'">
+                            @if (msg.text) {
+                                <p class="mb-1">{{ msg.text }}</p>
+                            }
+                            @if (msg.mediaUrl) {
+                                <div class="mt-2">
+                                    <a [href]="msg.mediaUrl" target="_blank">
+                                        <img [src]="msg.mediaUrl" alt="attached image" class="img-fluid rounded-2 max-h-200 object-fit-cover">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                        <small class="text-muted fs-8 mt-1 px-1">{{ msg.senderName || 'مستخدم' }}</small>
+                    </div>
+                }
+            </div>
+
+            <!-- Admin Composer / Input Bar -->
+            <div class="p-3 bg-white border-top d-flex flex-column gap-2">
+                <div class="position-relative bg-light rounded-3 p-2">
+                    <textarea class="form-control border-0 bg-transparent shadow-none resize-none"
+                              id="message-input"
+                              [(ngModel)]="newMessageText"
+                              (keydown.enter)="$event.preventDefault(); sendMessage()"
+                              placeholder="اكتب ردك للعميلة هنا..." rows="2"></textarea>
+
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top mt-2">
+                        <div class="d-flex gap-1 text-muted">
+                            <label class="btn btn-sm btn-light border-0 mb-0 cursor-pointer" title="إرفاق صورة">
+                                <span class="material-symbols-outlined fs-5">image</span>
+                                <input type="file" accept="image/*" class="d-none" (change)="onFileSelected($event)">
+                            </label>
+                        </div>
+                        <button class="btn btn-sm bg-plum-deep text-white px-3" id="send-btn" type="button" (click)="sendMessage()">إرسال</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar: Active Chats List -->
+        <aside class="col-12 col-xl-4 d-flex flex-column rounded-4 bg-white shadow-sm overflow-hidden chat-sidebar-height">
+            <div class="p-3 bg-plum-wash-light border-bottom">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <h2 class="h6 mb-0 text-primary fw-bold">المحادثات النشطة</h2>
+                        <span class="badge bg-plum-deep text-white rounded-circle p-1 px-2">{{ chatService.chatsList().length }}</span>
+                    </div>
+                    <button class="btn btn-sm btn-light shadow-sm d-flex align-items-center gap-1 border-0" id="sort-trigger" type="button">
+                        <span class="material-symbols-outlined fs-6">swap_vert</span>
+                        <span>الأحدث أولاً</span>
+                    </button>
+                </div>
+
+                <div class="position-relative w-100">
+                    <span class="material-symbols-outlined position-absolute search-icon-right">search</span>
+                    <input class="form-control form-control-custom pe-5 ps-3" placeholder="بحث بالاسم، رقم الطلب، أو الهاتف..." type="text">
+                </div>
+            </div>
+
+            <!-- Conversations Stream -->
+            <div class="flex-grow-1 overflow-y-auto p-2">
+                @for (chat of chatService.chatsList(); track chat.userUid) {
+                    <div (click)="selectUser(chat.userUid)"
+                          [class.bg-plum-wash]="chatService.selectedUserUid() === chat.userUid"
+                          class="p-3 rounded-3 bg-white border-start border-4 border-plum-deep mb-2 shadow-sm cursor-pointer transition-all">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="position-relative flex-shrink-0">
+                                <div class="chat-avatar bg-white p-1 rounded-3 shadow-sm">
+                                    <img class="w-100 h-100 object-fit-cover rounded-2" [src]=" 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1uQXKRu-QAI6GgFj_YyQsR_kJofa5Z1HwP6zuRNyCI7FAKuPZA3HOoMsv6ODc1zgWvx82oLfYXU27v_F6YqI29p3-22Kx4M9HXRN3kzuuBsnnmw0jmBO6sn_SGiu_bpDlAuSvdTMjtzoNqblxIIiO1ymIhmoeqjLcG_VKnousqn0i_YdbgsYJvziyy1WOr-IuqqVJGnmAZ39d332jSglca09NBfyQj7UCuy_jSpLYBeg1fGHCa8nu'" alt="avatar">
+                                </div>
+                                <span class="position-absolute bottom-0 start-0 p-1 bg-success border border-light rounded-circle"></span>
+
+                                <!-- النقطة الحمراء للإشعارات الجديدة -->
+                                @if (chat.unreadByAdminCount > 0) {
+                                    <span class="position-absolute top-0 end-0 p-1 bg-danger border border-light rounded-circle shadow-sm" title="يوجد رسائل غير مقروءة"></span>
+                                }
+                            </div>
+                            <div class="flex-grow-1 min-w-0">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <div class="d-flex align-items-center gap-1">
+                                        <h6 class="mb-0 text-plum-deep fw-bold text-truncate">{{ chat.userName || 'زائر للموقع' }}</h6>
+                                    </div>
+                                    <small class="text-plum-deep fw-bold">
+                                        {{ chat.updatedAt?.toDate() | date:'shortTime' }}
+                                    </small>
+                                </div>
+                                <p class="text-primary small text-truncate mb-2">{{ chat.lastMessage || 'لا توجد رسائل بعد' }}</p>
+                                <div class="d-flex align-items-center justify-content-between text-muted fs-7">
+                                    <span class="d-flex align-items-center gap-1 text-plum-deep">
+                                        <span class="material-symbols-outlined fs-6">storefront</span> محادثة نشطة
+                                    </span>
+                                    @if (chat.unreadByAdminCount > 0) {
+                                        <span class="badge bg-danger rounded-pill fs-8">{{ chat.unreadByAdminCount }}</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </aside>
+    </div>
+</main>

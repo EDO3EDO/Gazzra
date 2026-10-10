@@ -1,0 +1,120 @@
+<!-- Floating Chat Toggle Button (زر فتح الشات العائم) -->
+<button (click)="toggleChat()" id="chatToggleBtn" aria-label="فتح المحادثة" class="position-fixed bottom-0 end-0 m-4 rounded-circle shadow-lg d-flex align-items-center justify-content-center text-white border-0 chat-fab" type="button">
+  <span class="material-symbols-outlined fs-3" id="fabIcon">chat</span>
+</button>
+
+<!-- BEGIN: LiveChatModalContainer -->
+<main id="chatModal" [class.d-none]="!isOpen()" class="chat-widget bg-white shadow-lg border rounded-4 overflow-hidden d-flex flex-column position-relative" data-purpose="live-chat-widget">
+
+  <!-- BEGIN: ChatHeader -->
+  <header class="chat-header text-white px-3 py-3 d-flex align-items-center justify-content-between select-none flex-shrink-0" data-purpose="chat-header">
+    <!-- Left Controls: Close and Minimize Buttons -->
+    <div class="d-flex align-items-center gap-2 order-1">
+      <button (click)="closeChat()" id="closeChatBtn" aria-label="إغلاق المحادثة" class="btn btn-link text-white-50 text-decoration-none p-0 hover-white" type="button">
+        <span class="material-symbols-outlined fs-5">close</span>
+      </button>
+      <button (click)="closeChat()" aria-label="تصغير المحادثة" class="btn btn-link text-white-50 text-decoration-none p-0 hover-white" type="button">
+        <span class="material-symbols-outlined fs-5">minimize</span>
+      </button>
+    </div>
+
+    <!-- Right Profile Section: Avatar and Consultant Details -->
+    <div class="d-flex align-items-center gap-2 order-2">
+      <div class="text-end">
+        <div class="d-flex align-items-center justify-content-end gap-1 lh-sm">
+          <span class="badge bg-success rounded-circle p-1 d-flex align-items-center justify-content-center" style="width: 14px; height: 14px;" title="موثق">
+            <span class="material-symbols-outlined text-white" style="font-size: 10px;">done</span>
+          </span>
+          <h1 class="font-bold fs-6 mb-0 text-white tracking-wide">إيلينا • Elena</h1>
+        </div>
+        <p class="consultant-subtitle mb-0 text-white-50 mt-1">
+          مستشارة إطلالات الأطفال والحرير - متصلة الآن
+        </p>
+      </div>
+
+      <div class="position-relative flex-shrink-0">
+        <img alt="المستشارة إيلينا" class="rounded-circle object-fit-cover border border-white border-opacity-25 shadow-sm" style="width: 40px; height: 40px;" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3ARohWHyMKBptoOAVsMhBqkgpIeq9--Qurir-DsryxVwmW9pUdq1SydyfjCEpyts-nVmsEbAwgsoFpljvn6_4Ost1oLapH59vGRCD_G1z0WYnj_kk3IvyzPsL8AnD4CdCiuH2MqMD-r4vDAgd6t8iDbQjmL7V_2lBlA5Gvbn-6GV2KkqCseJAuUy8fk8fZkuq11MOZBWSykvxD9u7HObUzGPZ149JqQ56keHagWUaSzDekyH_p7lskOOLlN8yUqavHA" />
+        <span aria-hidden="true" class="position-absolute bottom-0 start-0 bg-success border rounded-circle" style="width: 10px; height: 10px; border-color: #4a284e;"></span>
+      </div>
+    </div>
+  </header>
+
+  <div #scrollContainer class="flex-grow-1 p-3 overflow-y-auto custom-scrollbar d-flex flex-column gap-3 bg-stone-light" data-purpose="chat-messages-container" id="chatMessages">
+
+    @for (msg of messages(); track msg.id || $index) {
+      @if (msg.senderId === userUid) {
+        <!-- رسالة العميل (صادرة) -->
+        <section class="d-flex flex-column align-items-end gap-1">
+          <div class="bg-plum text-white rounded-4 rounded-top-start-0 p-3 shadow-sm text-end message-bubble">
+            @if (msg.mediaUrl) {
+              <div class="mb-2">
+                <a [href]="msg.mediaUrl" target="_blank">
+                  <img [src]="msg.mediaUrl" class="img-fluid rounded-3" style="max-height: 180px; object-fit: cover;" alt="مرفق">
+                </a>
+              </div>
+            }
+            @if (msg.text) {
+              <p class="fs-7 mb-0" style="word-break: break-word;">{{ msg.text }}</p>
+            }
+          </div>
+          <div class="d-flex align-items-center gap-1 text-muted font-x-small px-1">
+            <span>مرسل</span>
+          </div>
+        </section>
+      } @else {
+        <section class="d-flex flex-column align-items-start gap-1">
+          <div class="bg-white rounded-4 rounded-top-end-0 p-3 shadow-sm border border-opacity-50 text-end message-bubble">
+            @if (msg.mediaUrl) {
+              <div class="mb-2">
+                <a [href]="msg.mediaUrl" target="_blank">
+                  <img [src]="msg.mediaUrl" class="img-fluid rounded-3" style="max-height: 180px; object-fit: cover;" alt="مرفق">
+                </a>
+              </div>
+            }
+            @if (msg.text) {
+              <p class="text-dark fs-7 mb-0" style="word-break: break-word;">{{ msg.text }}</p>
+            }
+          </div>
+          <span class="text-muted font-x-small px-1">hello</span>
+        </section>
+      }
+    }
+
+  </div>
+  <!-- END: ChatMessagesList -->
+
+  <!-- BEGIN: ChatComposerAndFooter -->
+  <footer class="bg-white border-top p-3 pt-2 flex-shrink-0" data-purpose="chat-input-area">
+
+    <!-- معاينة الصورة قبل الإرسال لو تم اختيارها -->
+    @if (filePreviewUrl()) {
+      <div class="mb-2 position-relative d-inline-block">
+        <img [src]="filePreviewUrl()" class="rounded-3 border" style="width: 60px; height: 60px; object-fit: cover;" alt="معاينة">
+        <button (click)="cancelAttachment()" class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger border-0 p-1" style="font-size: 10px;" type="button">×</button>
+      </div>
+    }
+
+    <form class="d-flex align-items-center gap-2" (ngSubmit)="sendMessage()" id="chatForm">
+      <!-- Send Button -->
+      <button [disabled]="isUploading() || (!newMessageText().trim() && !selectedFile())" aria-label="إرسال الرسالة" class="btn bg-plum text-white hover-plum-dark rounded-3 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 40px; height: 40px;" type="submit">
+        @if (!isUploading()) {
+          <span class="material-symbols-outlined fs-5 rtl-send-icon">send</span>
+        } @else {
+          <span class="spinner-border spinner-border-sm"></span>
+        }
+      </button>
+
+      <!-- Message Input Field with Attachment Icon inside -->
+      <div class="position-relative flex-grow-1">
+        <input [ngModel]="newMessageText()" (ngModelChange)="newMessageText.set($event)" name="newMessageText" id="messageInput" class="form-control form-control-sm ps-5 pe-3 py-2 fs-7 bg-light border border-opacity-75 rounded-3 shadow-none" placeholder="اكتبي استفساركِ هنا لمستشارة البوتيك..." type="text" autocomplete="off" />
+
+        <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" class="d-none">
+
+        <button (click)="fileInput.click()" aria-label="إرفاق ملف أو صورة" class="btn btn-link text-muted p-0 position-absolute top-50 start-0 translate-middle-y ms-3 text-decoration-none" type="button">
+          <span class="material-symbols-outlined fs-5">attach_file</span>
+        </button>
+      </div>
+    </form>
+  </footer>
+
+</main>

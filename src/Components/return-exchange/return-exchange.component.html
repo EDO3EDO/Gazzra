@@ -1,0 +1,60 @@
+<main class="flex-grow-1 d-flex align-items-center justify-content-center px-3 py-5 my-md-5">
+    <div class="card border-0 shadow p-4 p-md-5 position-relative w-100 max-w-custom bg-white rounded-3">
+
+        <div class="text-center mb-5 mt-4 mt-md-0">
+            <h1 class="brand-title text-plum">Gazzra</h1>
+        </div>
+
+        <div class="mx-auto form-container">
+            <h2 class="form-heading text-center mb-5">Start Your Return or Exchange</h2>
+
+            @if (errorMessage) {
+                <div class="alert alert-danger text-center py-2 mb-4" role="alert">
+                    {{ errorMessage }}
+                </div>
+            }
+
+            <form [formGroup]="returnForm" (ngSubmit)="onSubmit()" class="needs-validation">
+
+                <div class="mb-4">
+                    <label for="contact_info" class="form-label font-weight-semibold">Phone number</label>
+                    <input type="text" class="form-control input-underline shadow-none" id="contact_info" formControlName="contact_info" placeholder="01001234567" required>
+
+                    @if (returnForm.get('contact_info')?.touched && returnForm.get('contact_info')?.invalid) {
+                        <div class="invalid-feedback d-block">Please provide your phone number.</div>
+                    }
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <label for="order_number" class="form-label font-weight-semibold mb-0">Order Number</label>
+                        <span class="material-symbols-outlined text-muted fs-6 cursor-help" title="Find this in your confirmation email">info</span>
+                    </div>
+                    <div class="position-relative d-flex align-items-center">
+                        <span class="position-absolute start-0 text-muted ps-1">#</span>
+                        <input type="text" class="form-control input-underline shadow-none ps-4" id="order_number" formControlName="order_number" placeholder="512345" required>
+                    </div>
+
+                    @if (returnForm.get('order_number')?.touched && returnForm.get('order_number')?.invalid) {
+                        <div class="invalid-feedback d-block">Please provide a valid order number.</div>
+                    }
+                </div>
+
+                <div class="mb-4">
+                    <label for="issue_description" class="form-label font-weight-semibold">Describe your issue</label>
+                    <textarea class="form-control input-underline shadow-none min-height-100 resize-none" id="issue_description" formControlName="issue_description" placeholder="Please tell us more about why you are returning or exchanging these items..."></textarea>
+                </div>
+
+                <button type="submit" [disabled]="isLoading" class="btn btn-plum text-uppercase tracking-widest cta-btn w-100 px-5 py-3 shadow-sm">
+                    @if (isLoading) {
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Checking...
+                    } @else {
+                        Send
+                    }
+                </button>
+            </form>
+
+        </div>
+    </div>
+</main>

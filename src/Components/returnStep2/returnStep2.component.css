@@ -1,0 +1,168 @@
+
+body {
+    background-color: #f9f9f9;
+    color: #1a1c1c;
+    font-family: 'Inter', sans-serif;
+}
+
+.font-headline {
+    font-family: 'Libre Caslon Text', serif;
+}
+
+.max-w-container {
+    max-width: 1440px;
+}
+
+.text-plum-deep {
+    color: #4A2C55 !important;
+}
+
+.bg-plum-wash, .plum-wash {
+    background-color: #F8F5F9 !important;
+}
+
+.primary-fixed {
+    background-color: #f9d8ff !important;
+    color: #2b0f37 !important;
+}
+
+.badge-plum {
+    background-color: #F8F5F9;
+    color: #4A2C55;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50rem;
+}
+
+.badge-success-custom {
+    background-color: #5bfc99;
+    color: #00723b;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50rem;
+}
+
+.spinner-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #33163e !important;
+    border-color: #33163e !important;
+}
+
+.btn-primary:hover {
+    background-color: #4A2C55 !important;
+    border-color: #4A2C55 !important;
+}
+
+.step-icon-complete {
+    background-color: #e2e2e2;
+    color: #33163e;
+}
+
+.step-icon-active {
+    background-color: #33163e;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.step-icon-inactive {
+    background-color: #eeeeee;
+    color: #4c444d;
+}
+
+.ring-custom {
+    box-shadow: 0 0 0 4px #f9d8ff;
+}
+
+.step-label {
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.nav-link-custom {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #1a1c1c;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link-custom:hover {
+    color: #4A2C55;
+}
+
+.icon-hover:hover {
+    background-color: #F8F5F9;
+}
+
+.decorative-circle {
+    width: 192px;
+    height: 192px;
+    right: -4rem;
+    top: -4rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, #F8F5F9 0%, transparent 70%);
+    z-index: 0;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.product-img-box {
+    width: 70px;
+    height: 70px;
+}
+
+@media (min-width: 576px) {
+    .product-img-box {
+        width: 112px;
+        height: 144px;
+    }
+}
+
+.custom-checkbox, .custom-radio {
+    accent-color: #33163e;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+.top-custom {
+    top: 7rem;
+}
+
+.upload-box {
+    transition: background-color 0.2s ease;
+}
+
+.upload-box:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.upload-icon-circle {
+    width: 48px;
+    height: 48px;
+}
+
+
+
+.custom-checkbox, .custom-radio {
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+    accent-color: #33163e;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.form-check, .form-check-input, .form-check-label {
+    cursor: pointer;
+}

@@ -1,0 +1,37 @@
+/* تخصيص أيقونات جوجل وتأثيراتها */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+/* إزالة التأثيرات المزعجة لأزرار الأكورديون في بوتستراب */
+.btn.shadow-none:focus {
+  box-shadow: none !important;
+}
+
+/* تأثير تحوم خفيف لروابط الفوتر أو القوائم */
+.hover-white:hover {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+/* تحسين المظهر العام للمحتوى والتمرير السلس */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* تخصيص الخطوط العريضة والعناوين إذا لزم الأمر */
+h1, h2, h3, h4, .navbar-brand {
+  font-family: 'Libre Caslon Text', serif;
+}
+
+/* توافق مقاسات w-75 مع الشاشات المختلفة عبر Media Query سريعة للـ md */
+@media (min-width: 768px) {
+  .w-md-75 {
+    width: 75% !important;
+  }
+}

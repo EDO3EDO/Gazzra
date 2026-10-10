@@ -1,0 +1,103 @@
+<!-- 1. نافذة اختيار المقاسات (Drawer) -->
+<div class="quick-view-overlay" [class.show]="isOpen && currentMode === 'drawer'" [class.pointer-events-none]="!isOpen || currentMode !== 'drawer'" (click)="closeModal()">
+
+  <div class="quick-view-drawer" [class.show]="isOpen && currentMode === 'drawer'" (click)="$event.stopPropagation()">
+
+    <!-- زر الإغلاق (X) -->
+    <button class="close-btn" (click)="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- رأس البوب أب -->
+    <div class="drawer-header">
+      <h2>اختر المقاسات</h2>
+    </div>
+
+    <!-- تفاصيل المنتج الأساسية -->
+    @if (product) {
+      <div class="product-info-preview">
+        <div class="product-mini-img">
+          <img [src]="product.coverImage" alt="Product">
+        </div>
+        <div class="product-text">
+          <span class="product-title">{{product.title}}</span>
+          <span class="product-price">US {{product.price}}.00</span>
+        </div>
+      </div>
+
+      <!-- اختيار اللون -->
+      <div class="selection-group">
+        <span class="label">COLOR: <strong>BLACK & LIGHT BLUE</strong></span>
+        <div class="color-options">
+          <button class="color-dot black active" title="Black"></button>
+          <button class="color-dot red" title="Red"></button>
+          <button class="color-dot blue" title="Blue"></button>
+        </div>
+      </div>
+
+      <!-- اختيار المقاس (Size) -->
+      <div class="selection-group">
+        <div class="size-header">
+          <span class="label">SIZE</span>
+          <span class="stock-status">{{product.stock}} in stock</span>
+        </div>
+        <div class="size-options">
+          <button class="size-btn">XL</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn active">S</button>
+        </div>
+      </div>
+
+      <!-- اختيار الكمية (Quantity Controls) -->
+      <div class="selection-group my-3">
+        <span class="label">QUANTITY</span>
+        <div class="d-flex align-items-center gap-3 mt-2">
+          <button class="btn btn-outline-secondary btn-sm px-3 py-1" (click)="decreaseQty()">-</button>
+          <span class="fw-bold fs-6">{{ productQuantity }}</span>
+          <button class="btn btn-outline-secondary btn-sm px-3 py-1" (click)="increaseQty()">+</button>
+        </div>
+      </div>
+
+      <!-- زرار الإضافة للسلة -->
+      <div class="drawer-footer">
+        <button class="add-to-cart-btn" [disabled]="isProcessing" (click)="addToCart(product)">
+          {{ isProcessing ? 'ADDING...' : 'ADD TO BAG' }}
+        </button>
+      </div>
+    }
+
+  </div>
+</div>
+
+<!-- 2. الشريط الثابت (Sticky Bar) -->
+@if (currentMode === 'sticky' && product) {
+  <div class="sticky-cart-bar bg-white shadow-lg border-top p-3 position-fixed bottom-0 start-0 w-100 d-flex align-items-center justify-content-between z-3">
+
+      <div class="d-flex align-items-center gap-3">
+          <div class="product-img-container rounded-2 overflow-hidden bg-light flex-shrink-0" style="width: 50px; height: 50px;">
+              <img [alt]="product.title" class="w-100 h-100 object-fit-cover" [src]="product.coverImage" />
+          </div>
+          <div class="d-flex flex-column">
+              <span class="text-muted small">Added to Cart successfully</span>
+              <span class="fw-bold text-dark text-truncate" style="max-width: 220px;">{{ product.title }}</span>
+              <span class="small text-secondary">
+                Total Qty: {{ cartTotalQuantity }} ·
+                <strong class="text-dark">US {{ cartTotalPrice }}.00</strong>
+              </span>
+          </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+          <a class="btn btn-dark d-flex align-items-center gap-2 px-4 py-2 text-decoration-none text-white rounded-pill fs-7" (click)="navCart()">
+              <span>View Cart</span>
+          </a>
+
+          <button (click)="currentMode = 'drawer'; closeModal()" aria-label="Close" class="btn btn-outline-secondary border-0 rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" style="width: 35px; height: 35px;">
+              ✕
+          </button>
+      </div>
+  </div>
+}

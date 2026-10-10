@@ -1,0 +1,118 @@
+:root {
+  --primary-dark: #4A2C55;
+  --accent-sand: #f7f4ef;
+  --border-color: #d1c7bc;
+  --hover-color: #33163e;
+}
+
+.brand-color {
+  color: #4A2C55 !important;
+}
+
+.custom-header {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.custom-sidebar {
+  background-color: #f7f4ef !important;
+}
+
+.border-input-line {
+  border-color: #d1c7bc !important;
+}
+
+.custom-hover {
+  transition: color 0.2s ease;
+}
+
+.custom-hover:hover {
+  color: #33163e !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #4A2C55 !important;
+  box-shadow: none !important;
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: #198754 !important;
+  background-image: none !important;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545 !important;
+  background-image: none !important;
+}
+
+.invalid-feedback {
+  font-size: 0.85rem;
+  color: #dc3545;
+  margin-top: 0.25rem;
+}
+
+.custom-btn-dark {
+  background-color: #4A2C55;
+  color: #ffffff;
+  border: 1px solid #4A2C55;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-btn-dark:hover {
+  background-color: #33163e;
+  border-color: #33163e;
+  color: #ffffff;
+}
+
+.custom-btn-outline {
+  color: #4A2C55;
+  border-color: #d1c7bc;
+  background-color: transparent;
+}
+
+.custom-btn-outline:hover {
+  background-color: #4A2C55;
+  color: #fff;
+  border-color: #4A2C55;
+}
+
+.payment-option {
+  border-color: #d1c7bc !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.payment-option:hover {
+  border-color: #4A2C55 !important;
+}
+
+input[type="radio"]:checked ~ .payment-option {
+  border-color: #4A2C55 !important;
+}
+
+.custom-radio {
+  accent-color: #4A2C55;
+}
+
+button:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #4a4a4a;
+}
+
+h1, h2, h3, h4, .navbar-brand {
+  font-family: 'Libre Caslon Text', serif;
+}

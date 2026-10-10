@@ -1,0 +1,234 @@
+<!-- Main Checkout Content -->
+<main class="container py-5 mt-5">
+  <div class="row g-5">
+
+    <!-- Left Side / Main Form Area -->
+    <div class="col-lg-7 d-flex flex-column gap-5 order-2 order-lg-1">
+      <form [formGroup]="checkoutForm" (ngSubmit)="SubmitIng()">
+
+        <!-- Shipping Address Section -->
+        <section class="d-flex flex-column gap-4">
+          <h2 class="h4 fw-normal brand-color mb-0">Shipping Details</h2>
+          <div class="row g-4">
+
+            <!-- Full Name -->
+            <div class="col-12">
+              <label for="fullName" class="visually-hidden">Full Name</label>
+              <input type="text"
+                     formControlName="Name"
+                     [ngClass]="{
+                       'is-valid': checkoutForm.get('Name')?.valid && (checkoutForm.get('Name')?.dirty || checkoutForm.get('Name')?.touched),
+                       'is-invalid': checkoutForm.get('Name')?.invalid && (checkoutForm.get('Name')?.dirty || checkoutForm.get('Name')?.touched)
+                     }"
+                     class="form-control rounded-0 border-0 border-bottom border-input-line shadow-none px-0 py-3 bg-transparent"
+                     id="fullName"
+                     placeholder="Full Name">
+              @if (checkoutForm.get('Name')?.invalid && (checkoutForm.get('Name')?.dirty || checkoutForm.get('Name')?.touched)) {
+                <div class="invalid-feedback d-block">Full Name must be at least 3 characters.</div>
+              }
+            </div>
+
+            <!-- Governorate -->
+            <div class="col-12 position-relative">
+              <label for="governorate" class="visually-hidden">Select Governorate</label>
+              <select
+                formControlName="area"
+                [ngClass]="{
+                  'is-valid': checkoutForm.get('area')?.valid && (checkoutForm.get('area')?.dirty || checkoutForm.get('area')?.touched),
+                  'is-invalid': checkoutForm.get('area')?.invalid && (checkoutForm.get('area')?.dirty || checkoutForm.get('area')?.touched)
+                }"
+                class="form-select rounded-0 border-0 border-bottom border-input-line shadow-none px-0 py-3 bg-transparent cursor-pointer"
+                id="governorate">
+                <option selected disabled value="">Select Governorate</option>
+                <option value="Cairo">Cairo</option>
+                <option value="Giza">Giza</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Dakahlia">Dakahlia</option>
+                <option value="Red Sea">Red Sea</option>
+                <option value="Beheira">Beheira</option>
+                <option value="Fayoum">Fayoum</option>
+                <option value="Gharbia">Gharbia</option>
+                <option value="Ismailia">Ismailia</option>
+                <option value="Monufia">Monufia</option>
+                <option value="Minya">Minya</option>
+                <option value="Qaliubiya">Qaliubiya</option>
+                <option value="New Valley">New Valley</option>
+                <option value="Sharqia">Sharqia</option>
+                <option value="Suez">Suez</option>
+                <option value="Aswan">Aswan</option>
+                <option value="Assiut">Assiut</option>
+                <option value="Beni Suef">Beni Suef</option>
+                <option value="Port Said">Port Said</option>
+                <option value="Damietta">Damietta</option>
+                <option value="Sharkia">Sharkia</option>
+                <option value="South Sinai">South Sinai</option>
+                <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                <option value="Matruh">Matruh</option>
+                <option value="Luxor">Luxor</option>
+                <option value="Qena">Qena</option>
+                <option value="North Sinai">North Sinai</option>
+                <option value="Sohag">Sohag</option>
+              </select>
+              @if (checkoutForm.get('area')?.invalid && (checkoutForm.get('area')?.dirty || checkoutForm.get('area')?.touched)) {
+                <div class="invalid-feedback d-block">Please select a governorate.</div>
+              }
+            </div>
+
+            <!-- Detailed Address -->
+            <div class="col-12">
+              <label for="address" class="visually-hidden">Detailed Address</label>
+              <textarea formControlName="Location"
+                        [ngClass]="{
+                          'is-valid': checkoutForm.get('Location')?.valid && (checkoutForm.get('Location')?.dirty || checkoutForm.get('Location')?.touched),
+                          'is-invalid': checkoutForm.get('Location')?.invalid && (checkoutForm.get('Location')?.dirty || checkoutForm.get('Location')?.touched)
+                        }"
+                        class="form-control rounded-0 border-0 border-bottom border-input-line shadow-none px-0 py-3 bg-transparent resize-none"
+                        id="address"
+                        rows="3"
+                        placeholder="Detailed Address (Building Number, Street, Area)"></textarea>
+              @if (checkoutForm.get('Location')?.invalid && (checkoutForm.get('Location')?.dirty || checkoutForm.get('Location')?.touched)) {
+                <div class="invalid-feedback d-block">Detailed address must be at least 10 characters.</div>
+              }
+            </div>
+
+            <!-- Primary Phone -->
+            <div class="col-md-6">
+              <label for="phone1" class="visually-hidden">Primary Phone Number</label>
+              <input formControlName="Phone"
+                     [ngClass]="{
+                       'is-valid': checkoutForm.get('Phone')?.valid && (checkoutForm.get('Phone')?.dirty || checkoutForm.get('Phone')?.touched),
+                       'is-invalid': checkoutForm.get('Phone')?.invalid && (checkoutForm.get('Phone')?.dirty || checkoutForm.get('Phone')?.touched)
+                     }"
+                     type="tel"
+                     class="form-control rounded-0 border-0 border-bottom border-input-line shadow-none px-0 py-3 bg-transparent"
+                     id="phone1"
+                     placeholder="Primary Phone Number">
+              @if (checkoutForm.get('Phone')?.invalid && (checkoutForm.get('Phone')?.dirty || checkoutForm.get('Phone')?.touched)) {
+                <div class="invalid-feedback d-block">Enter a valid Egyptian phone number (e.g., 01012345678).</div>
+              }
+            </div>
+
+            <!-- Secondary Phone -->
+            <div class="col-md-6">
+              <label for="phone2" class="visually-hidden">Secondary Phone Number (Optional)</label>
+              <input formControlName="OtherPhone"
+                    [ngClass]="{
+                      'is-valid': checkoutForm.get('OtherPhone')?.value && checkoutForm.get('OtherPhone')?.value !== '' && checkoutForm.get('OtherPhone')?.valid && (checkoutForm.get('OtherPhone')?.dirty || checkoutForm.get('OtherPhone')?.touched),
+                      'is-invalid': checkoutForm.get('OtherPhone')?.value && checkoutForm.get('OtherPhone')?.value !== '' && checkoutForm.get('OtherPhone')?.invalid && (checkoutForm.get('OtherPhone')?.dirty || checkoutForm.get('OtherPhone')?.touched)
+                      }"
+                     type="tel"
+                     class="form-control rounded-0 border-0 border-bottom border-input-line shadow-none px-0 py-3 bg-transparent"
+                     id="phone2"
+                     placeholder="Secondary Phone Number (Optional)">
+              @if (checkoutForm.get('OtherPhone')?.value && checkoutForm.get('OtherPhone')?.value !== '' && checkoutForm.get('OtherPhone')?.invalid && (checkoutForm.get('OtherPhone')?.dirty || checkoutForm.get('OtherPhone')?.touched)) {
+                <div class="invalid-feedback d-block">Enter a valid Egyptian phone number.</div>
+              }
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Payment Method Section -->
+        <section class="d-flex flex-column gap-4 pt-4 border-top border-light-subtle">
+          <h2 class="h4 fw-normal brand-color mb-0">Payment Method</h2>
+
+          <div class="d-flex flex-column gap-3">
+
+            <!-- Credit Card -->
+            <label class="d-flex align-items-center gap-3 p-3 border rounded-3 cursor-pointer payment-option">
+              <input class="form-check-input mt-0 custom-radio" type="radio" name="payment" value="credit_card" (change)="selectPayment($event)" checked>
+              <span class="flex-grow-1 fw-medium brand-color">Credit Card</span>
+              <span class="material-symbols-outlined text-muted">credit_card</span>
+            </label>
+
+            <!-- Cash on Delivery -->
+            <label class="d-flex align-items-center gap-3 p-3 border rounded-3 cursor-pointer payment-option">
+              <input class="form-check-input mt-0 custom-radio" type="radio" name="payment" value="cod" (change)="selectPayment($event)">
+              <span class="flex-grow-1 fw-medium brand-color">Cash on Delivery</span>
+              <span class="material-symbols-outlined text-muted">local_shipping</span>
+            </label>
+
+            <!-- Installments -->
+            <label class="d-flex align-items-center gap-3 p-3 border rounded-3 cursor-pointer payment-option">
+              <input class="form-check-input mt-0 custom-radio" type="radio" name="payment" value="installments" (change)="selectPayment($event)">
+              <span class="flex-grow-1 d-flex flex-column">
+                <span class="fw-medium brand-color">Installments</span>
+              </span>
+              <span class="material-symbols-outlined text-muted">account_balance_wallet</span>
+            </label>
+
+          </div>
+        </section>
+
+      </form>
+    </div>
+
+    <!-- Right Side / Order Summary Sidebar -->
+    <div class="col-lg-5 order-2 order-lg-1">
+      <div class="custom-sidebar p-4 p-lg-5 rounded-4 d-flex flex-column gap-4 shadow-sm" style="top: 100px;">
+        <h3 class="h4 fw-normal brand-color border-bottom border-light-subtle pb-3 mb-0">Order Summary</h3>
+        <div class="d-flex flex-column gap-4">
+          @for (item of showCart(); track $index) {
+            <div class="d-flex gap-3 align-items-start">
+              <div class="flex-shrink-0 bg-white border border-light-subtle p-1" style="width: 75px; height: 90px;">
+                <img [src]="item.coverImage" alt="Item" class="w-100 h-100 object-fit-cover">
+              </div>
+              <div class="flex-grow-1 pt-1">
+                <h4 class="fs-6 fw-medium brand-color mb-1">{{ item.title}}</h4>
+                <p class="small text-muted mb-2">quantity: {{item.quantity}}</p>
+                <div class="fw-bold brand-color"> price: {{item.price }} EGP</div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Discount Code -->
+        <div class="input-group pt-3 border-top border-light-subtle">
+          <input type="text" class="form-control rounded-0 shadow-none bg-white border-input-line" placeholder="Discount Code">
+          <button class="btn custom-btn-outline rounded-0 text-uppercase small px-4" type="button">Apply</button>
+        </div>
+
+        <!-- Totals -->
+        <div class="d-flex flex-column gap-2 pt-3 border-top border-light-subtle text-secondary">
+          <div class="d-flex justify-content-between">
+            <span>Subtotal</span>
+            <span class="brand-color">{{totalPrice()}} EGP</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>Shipping</span>
+            <span>Calculated at next step</span>
+          </div>
+          <div class="d-flex justify-content-between brand-color fw-bold fs-5 mt-2 pt-3 border-top border-light-subtle">
+            <span>Total</span>
+            <span>{{totalPrice()}} EGP</span>
+          </div>
+        </div>
+
+        <div class="d-block d-lg-none pt-3">
+          <button type="button" (click)="SubmitIng()" class="btn custom-btn-dark w-100 py-3 rounded-0 text-uppercase tracking-widest fw-medium d-flex align-items-center justify-content-center gap-2" [disabled]="IsLoding()">
+            @if (IsLoding()) {
+              <span>Loading...</span>
+            } @else {
+              <span>Complete Order</span>
+              <span class="material-symbols-outlined fs-5">arrow_forward</span>
+            }
+          </button>
+        </div>
+
+      </div>
+
+      <div class="d-none d-lg-block pt-3">
+        <button type="button" (click)="SubmitIng()" class="btn custom-btn-dark w-100 py-3 rounded-0 text-uppercase tracking-widest fw-medium d-flex align-items-center justify-content-center gap-2 group transition-all" [disabled]="IsLoding()">
+          @if (IsLoding()) {
+            <span>Loading...</span>
+          } @else {
+            <span>Complete Order</span>
+            <span class="material-symbols-outlined fs-5 arrow-icon">arrow_forward</span>
+          }
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</main>

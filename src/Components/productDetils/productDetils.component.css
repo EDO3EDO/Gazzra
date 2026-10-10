@@ -1,0 +1,99 @@
+/* Custom Styles & Color System */
+:root {
+    --plum-deep: #4A2C55;
+    --plum-wash: #F8F5F9;
+    --success-mint: #2CD97B;
+    --surface: #f9f9f9;
+    --on-surface: #1a1c1c;
+    --on-surface-variant: #4c444d;
+    --outline-variant: #cec3cd;
+    --paper: #FFFFFF;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--surface);
+    color: var(--on-surface);
+}
+
+.font-headline {
+    font-family: 'Libre Caslon Text', serif;
+}
+
+.text-plum-deep { color: var(--plum-deep) !important; }
+.bg-plum-deep { background-color: var(--plum-deep) !important; }
+.bg-plum-wash { background-color: var(--plum-wash) !important; }
+.text-plum-wash { color: var(--plum-wash) !important; }
+
+.btn-plum-deep {
+    background-color: #4A2C55;
+    border-color: #4A2C55;
+    transition: background-color 0.3s ease;
+}
+.btn-plum-deep:hover {
+    background-color: #381f41;
+    border-color: #381f41;
+}
+
+.max-w-container-max { max-width: 1440px; margin: 0 auto; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.ratio-3-4 { aspect-ratio: 3 / 4; }
+
+.bg-gradient-dark {
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+
+
+
+/* ///////....... product you want .....////// */
+
+
+/* Product Card & Image Styles */
+.product-card {
+  cursor: pointer;
+}
+
+.img-frame {
+  padding: 12px;
+  background: white;
+  border: 1px solid #e2e2e2;
+}
+
+.aspect-ratio-3-4 {
+  aspect-ratio: 3 / 4;
+}
+
+.product-img {
+  transition: transform 0.7s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-card:hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.badge-custom {
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+
+.body-lg {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.body-md {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+}

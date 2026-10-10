@@ -1,0 +1,79 @@
+
+
+.font-body {
+    font-family: 'Inter', sans-serif;
+}
+
+.headline-xl {
+    font-family: 'Libre Caslon Text', serif;
+}
+
+.bg-plum-wash {
+    background-color: #F8F5F9 !important;
+}
+
+.text-primary {
+    color: #33163e !important;
+}
+
+.btn-primary {
+    background-color: #33163e;
+    border-color: #33163e;
+}
+
+.btn-primary:hover {
+    background-color: #4a2c55;
+    border-color: #4a2c55;
+}
+
+.btn-plum-wash {
+    background-color: #F8F5F9;
+    color: #33163e;
+    border: none;
+}
+
+.btn-plum-wash:hover {
+    background-color: #e1b9eb;
+    color: #2b0f37;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+
+.avatar-box {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+.hover-bg-light:hover {
+    background-color: rgba(0, 0, 0, 0.015);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.focus-none:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+
+
+.main-content-wrapper {
+    flex-grow: 1;
+    min-width: 0;
+}
+

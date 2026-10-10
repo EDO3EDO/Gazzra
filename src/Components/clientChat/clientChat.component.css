@@ -1,0 +1,129 @@
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #f5f5f4;
+  min-height: 100vh;
+}
+
+.bg-stone-custom {
+  background-color: #f5f5f4;
+}
+
+.bg-stone-light {
+  background-color: #fafaf9;
+}
+
+/* الألوان الأساسية مباشرة بدون متغيرات */
+.bg-plum {
+  background-color: #4a284e !important;
+}
+
+.hover-plum-dark:hover {
+  background-color: #3d2040 !important;
+}
+
+.chat-widget {
+  width: 100%;
+  max-width: 410px;
+  height: 700px;
+  max-height: 92vh;
+  border-radius: 26px !important;
+  border-color: #e7e5e4 !important;
+  z-index: 1050;
+}
+
+.chat-header {
+  background-color: #4a284e;
+}
+
+/* زر الشات العائم (Floating Button) */
+.chat-fab {
+  width: 60px;
+  height: 60px;
+  background-color: #4a284e;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  z-index: 1060;
+}
+
+.chat-fab:hover {
+  background-color: #3d2040;
+  transform: scale(1.05);
+}
+
+.consultant-subtitle {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.hover-white:hover {
+  color: #ffffff !important;
+}
+
+.message-bubble {
+  max-width: 90%;
+  line-height: 1.6;
+}
+
+.fs-7 {
+  font-size: 12.5px;
+}
+
+.font-x-small {
+  font-size: 10.5px;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #d1d5db;
+}
+
+
+.rtl-send-icon {
+  transform: scaleX(-1);
+}
+
+.hover-stone:hover {
+  background-color: #f5f5f4 !important;
+}
+
+#messageInput:focus {
+  border-color: #4a284e !important;
+  background-color: #ffffff !important;
+}
+
+
+.chat-widget {
+  position: fixed !important;
+  bottom: 90px;
+  right: 20px;
+  width: 100%;
+  max-width: 410px;
+  height: 600px;
+  max-height: 80vh;
+  border-radius: 26px !important;
+  border-color: #e7e5e4 !important;
+  z-index: 1050;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+
+@media (max-width: 576px) {
+  .chat-widget {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    bottom: 80px;
+  }
+}

@@ -1,0 +1,462 @@
+/* Custom CSS Variables & Styling for Meadow Theme */
+:root {
+  --plum-deep: #4A2C55;
+  --plum-wash: #F8F5F9;
+  --surface: #f9f9f9;
+  --on-surface: #1a1c1c;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+
+.custom-viwe {
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-viwe:hover {
+  opacity: 0.7;
+}
+
+.max-w-container {
+  max-width: 1440px;
+}
+
+.text-plum-deep {
+  color: var(--plum-deep) !important;
+}
+
+.bg-plum-deep {
+  background-color: var(--plum-deep) !important;
+}
+
+.text-plum-wash {
+  color: var(--plum-wash) !important;
+}
+
+.bg-plum-wash {
+  background-color: var(--plum-wash) !important;
+}
+
+.brand-title, .headline-xl, .headline-md, .display-title {
+  font-family: 'Libre Caslon Text', serif;
+}
+
+.brand-title {
+  font-size: 26px;
+}
+
+.display-title {
+  font-size: 36px;
+}
+
+.headline-xl {
+  font-size: 30px;
+}
+
+.headline-md {
+  font-size: 26px;
+}
+
+.body-lg {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.body-md {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.img-frame {
+  padding: 12px;
+  background: white;
+  border: 1px solid #e2e2e2;
+}
+
+.aspect-ratio-3-4 {
+  aspect-ratio: 3 / 4;
+}
+
+.custom-header {
+  backdrop-filter: blur(12px);
+  z-index: 1050;
+}
+
+.nav-link-custom {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: #4c444d;
+  text-decoration: none;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover, .active-link {
+  color: var(--plum-deep);
+}
+
+.active-link {
+  border-bottom: 2px solid var(--plum-deep);
+}
+
+.hero-section {
+  height: 70vh;
+}
+
+.product-img {
+  transition: transform 0.7s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.change-hover:hover{
+  color: #4A154B;
+}
+
+
+.product-card:hover{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+}
+
+.rotate-custom {
+  transform: rotate(1deg);
+}
+
+.hotspot {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.hotspot:hover {
+  transform: scale(1.1);
+}
+
+.top-33 {
+  top: 33%;
+}
+
+.top-66 {
+  top: 66%;
+}
+
+.start-25 {
+  left: 25%;
+}
+
+.end-25 {
+  right: 25%;
+}
+
+.badge-custom {
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+
+.hover-opacity:hover {
+  opacity: 0.7;
+}
+
+.hover-white:hover {
+  color: #ffffff !important;
+}
+
+.py-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.py-seci{
+  padding-top: 60px;
+  padding-bottom: 45px;
+}
+
+.py-sec{
+  padding-top: 45px !important;
+}
+
+
+.custom-viwe{
+  font-size: 15px !important;
+  font-family: "Bricolage Grotesque", Arial, sans-serif!important;
+  padding-bottom: 1px !important;
+  border-bottom: 1px solid black !important;
+  width: fit-content !important;
+}
+
+.filled-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+
+
+
+
+footer {
+    background-color: var(--ink, #121212);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff !important;
+}
+
+.text-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.hover-bg-white-20:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+/* ==========================================================
+    Responsive Media Queries (Bootstrap 5 Breakpoints)
+   ========================================================== */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .hero-section {
+    height: 75vh;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .brand-title {
+    font-size: 28px;
+  }
+  .display-title {
+    font-size: 40px;
+  }
+  .headline-xl {
+    font-size: 34px;
+  }
+  .headline-md {
+    font-size: 28px;
+  }
+  .py-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .brand-title {
+    font-size: 32px;
+  }
+  .display-title {
+    font-size: 48px;
+  }
+  .headline-xl {
+    font-size: 40px;
+  }
+  .headline-md {
+    font-size: 32px;
+  }
+  .hero-section {
+    height: 80vh;
+  }
+  .body-lg {
+    font-size: 18px;
+  }
+  .body-md {
+    font-size: 16px;
+  }
+  .py-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* إضافات متوافقة مع الشاشات الواسعة جداً إذا لزم الأمر */
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* الحفاظ على التناسق العام داخل الـ max-w-container */
+}
+
+
+
+
+/* ///////.... catigory .....////// */
+
+
+
+/* Custom CSS Variables & Theme Styles */
+:root {
+  --plum-deep: #4A2C55;
+  --plum-wash: #F8F5F9;
+  --surface: #f9f9f9;
+  --on-surface: #1a1c1c;
+  --paper: #FFFFFF;
+  --ink: #121212;
+  --outline-variant: #cec3cd;
+  --success-mint: #2CD97B;
+  --on-surface-variant: #4c444d;
+}
+
+.bg-surface { background-color: var(--surface); }
+.bg-plum-deep { background-color: var(--plum-deep); }
+.bg-plum-wash { background-color: var(--plum-wash); }
+.text-plum-deep { color: var(--plum-deep); }
+.text-ink { color: var(--ink); }
+.text-on-surface-variant { color: var(--on-surface-variant); }
+
+.bg-paper-opacity {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.max-w-container {
+  max-width: 1440px;
+}
+
+.py-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.section-heading {
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 26px;
+}
+
+.filter-badge {
+  background-color: #e2e2e2;
+  color: var(--on-surface-variant);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.filter-badge:hover, .Gamed {
+  background-color: #4A2C55;
+  color: white;
+}
+
+.cursour-pointer{
+  cursor: pointer;
+}
+
+/* ==========================================
+    Bootstrap Media Queries Integration
+    ========================================== */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .py-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .section-heading {
+    font-size: 30px;
+  }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .py-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .section-heading {
+    font-size: 32px;
+  }
+}
+
+
+
+/* ////////////////////....collection........ ///////// */
+
+:root {
+    --plum-deep: #4A154B;
+    --plum-wash: #F4F1F4;
+    --paper: #FFFFFF;
+}
+
+.custom-card {
+    height: 600px;
+    cursor: pointer;
+}
+
+.card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.custom-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(74, 21, 75, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.custom-card:hover .card-overlay {
+    background-color: rgba(74, 21, 75, 0.4);
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.custom-btn {
+    background-color: var(--paper);
+    color: var(--plum-deep);
+    font-weight: 600;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+.custom-card:hover .custom-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-btn:hover {
+    background-color: var(--plum-wash);
+}
