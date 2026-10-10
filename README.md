@@ -1,59 +1,55 @@
-# App
+# 👕 Gazara  - E-Commerce Store
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
+> A fully-featured e-commerce clothing store web application to browse products, manage shopping carts, handle dynamic sizes and colors, and track orders with a built-in admin dashboard, live chat, and return/exchange system.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🔗 Quick Links
+* **Live Demo:** [View Live Demo](https://gazzra-e0f3c.web.app/)
+* **Status:** In Progress
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🎥 Project Demo
 
-## Code scaffolding
+![Gazara Demo](demo.gif)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🛠️ Tech Stack
+* **Frontend:** Angular, Standalone Components, TypeScript, RxJS
+* **Styling & UI:** Bootstrap 5, Font Awesome, Custom CSS
+* **Backend & Database:** Firebase (Cloud Firestore, Hosting)
+* **Deployment:** Firebase Hosting
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## ✨ Key Features
+* **Product Catalog & Variants:** Browse clothing items with custom options for different sizes and colors.
+* **Quick Cart Popup:** A floating cart drawer showing added items instantly at the bottom with a quick button to jump straight to the cart page.
+* **Admin Dashboard:** A dedicated control panel for admins to add new products and manage incoming store orders.
+* **Shipping Label & Invoice Printing:** A built-in feature for admins to print official order waybills containing customer details and order info.
+* **Live Chat Support:** Real-time messaging system connecting customers directly with the store admin.
+* **Return & Exchange System:** A dedicated lookup page where users enter their order ID and phone number to fetch their order and select specific items for return or exchange.
 
-## Building
+---
 
-To build the project run:
+## 💡 Technical Challenges & Solutions
+1. **Challenge 1 (Visitor Tracking Without User Login):**
+   * *What happened:* Since users could browse and add items to the cart without registering right away, there was no auth token to track individual carts.
+   * *How I fixed it:* Generated a unique **Visitor ID** saved directly in the browser's `localStorage` so I could easily separate users and keep track of their cart items independently.
+2. **Challenge 2 (Handling Dynamic Sizes and Colors):**
+   * *What happened:* Every clothing product came with multiple variations (different sizes and colors), which made saving and managing them a bit messy.
+   * *How I fixed it:* Structured the product-adding form so that whenever a product is created, it dynamically generates inputs for its specific sizes and colors to store everything cleanly.
+3. **Challenge 3 (Streamlining Returns & Exchanges):**
+   * *What happened:* Needed an easy way for customers to request a return or exchange without bothering support through chat for every little thing.
+   * *How I fixed it:* Built a lookup flow where users input their order ID and phone number, the system pulls up their specific order, and they can pick the exact item they want to return or exchange.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## ⚙️ Getting Started
+To run this project locally:
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/USERNAME/Gazara.git](https://github.com/USERNAME/Gazara.git)
