@@ -12,7 +12,7 @@
 
 ## 🎥 Project Demo
 
-![Gazara Demo](demo.gif)
+![Gazara Demo](./public/demo.gif)
 
 ---
 
